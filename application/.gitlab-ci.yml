@@ -1,0 +1,14 @@
+stages:
+  - deploy
+ 
+deploy-master:
+  tags:
+    - smartcampus
+    - platform
+  stage: deploy
+  script:
+    - lastiapp penetapankelulusan html
+  environment:
+    name: production
+  only:
+    - master

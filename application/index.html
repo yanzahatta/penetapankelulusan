@@ -1,0 +1,3476 @@
+<!doctype html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+
+<head>
+    <title>Express HTML</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+</head>
+
+<nav class="navbar navbar-expand-lg ">
+    <a class="navbar-brand" href="#">SmartCampus</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="admin">Admin </a>
+            </li>
+            <li><a href="user">User</a></li>
+        </ul>
+    </div>
+</nav>
+
+<body>
+    <div class="container">
+        <div style="margin:40px;margin-top:100px;">
+            <h1>Admin</h1>
+            <div class="jumbotron">
+                <span class="align-middle">
+            <h2>Welcome Admin!</h2>
+            <p>Silahkan input data calon mahasiswa ITB berdasarkan kategori</p>
+        </span>
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Nilai</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Parameter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Hasil</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                        
+                            <div class="row">
+                                    
+                                    <!-- <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tipe Pendaftaran</label> -->
+                                    <select style="width: 150px; " class="custom-select my-1 mr-sm-2" id="tipeGenerate">
+                                        <option selected>Choose...</option>
+                                        <option value="1">SNMPTN</option>
+                                        <option value="2">SBMPTN</option>
+                                        <option value="3">Mandiri</option>
+                                        <option value="4">S2</option>
+                                        <option value="5">S3</option>
+                                    </select>
+                                    <button class="btn btn-warning" id="generate" style="width:200px; margin-right: 10px;">Generate nilai
+                                        </button>
+                                </div>
+
+                        <form>
+                            <label class="radio-inline">
+                                <input type="radio" name="optradio" onclick="show1()">POST
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optradio" onclick="show2()">GET
+                            </label>
+                        </form>
+
+                       
+
+                        <div id="postnilai">
+                            <form class="form-inline">
+                                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tipe Pendaftaran</label>
+                                <select class="custom-select my-1 mr-sm-2" id="tipePendaftaran" onclick="showForm()">
+                                    <option selected>Choose...</option>
+                                    <option value="1">SNMPTN</option>
+                                    <option value="2">SBMPTN</option>
+                                    <option value="3">Mandiri</option>
+                                    <option value="4">S2</option>
+                                    <option value="5">S3</option>
+                                </select>
+
+                                <label id="selectFakultas" class="my-1 mr-2" for="inlineFormCustomSelectPref">Jenis</label>
+                                <select class="custom-select my-1 mr-sm-2" id="tipeFakultas" onclick="showForm()">
+                                    <option selected>Choose...</option>
+                                    <option value="1">IPA</option>
+                                    <option value="2">IPS</option>
+                                </select>
+                            </form>
+                            <div id="formSNMIPA">
+                                <!-- <form id="form1"> -->
+                                <div class="row">
+                                    <div class="column">
+                                        <form method="POST" id="form1" action="/nilai/1" class="form" style="margin-top: 0px; padding: 37px;">
+                                            <table class="table table-bordered" style="width:300px">
+                                                <tbody>
+                                                    <tr>
+                            <td>Id Pendaftaran</td>
+                            <td>
+                                <input type="number" style="width: 150px; padding: 5px" name="id_pendaftaran" id="id_pendaftaran">
+                            </td>
+                        </tr>
+                                                    <tr></tr>
+                                                        <td>Nama</td>
+                                                        <td>
+                                                            <input type="string" style="width: 250px; padding: 5px" name="name" id="name">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Fakultas1</td>
+                                                        <td>
+                                                            <input type="string" style="width: 100px; padding: 5px" name="fakultas1" id=fakultas1>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Fakultas2</td>
+                                                        <td>
+                                                            <input type="string" style="width: 100px; padding: 5px" name="fakultas2" id="fakultas2">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <button class="btn btn-primary" type="submit" style="width:200px;">Submit</button>
+                                    </div>
+                                    <div class="column">
+                                        <table class="table table-bordered" style="margin-top: 35px; display:inline-block;">
+                                            <tbody>
+                                                <tr>
+                                                    <td>indekssekolah</td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param1" required id="param1"> </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>raportmat</td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param2" required id="param2"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>raportfisika</td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param3" required id="param3"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>raportkimia</td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param4" required id="param4"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>raportbiologi </td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param5" required id="param5"> </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="formSNMIPS" style="display: none;">
+                                <div class="row">
+                                    <div class="column">
+                                        <form method="POST" action="/nilai/1" class="form" style="margin-top: 0px; padding: 20px;">
+                                            <table class="table table-bordered" style="width: 300px;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Id Pendaftaran</td>
+                                                        <td>
+                                                            <input type="number" style="width: 150px; padding: 5px" name="id_pendaftaran" id="id_pendaftaran">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Nama</td>
+                                                        <td>
+                                                            <input type="string" style="width: 250px; padding: 5px" name="name" id="name">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Fakultas1</td>
+                                                        <td>
+                                                            <input type="string" style="width: 100px; padding: 5px" name="fakultas1" id=fakultas1>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Fakultas2</td>
+                                                        <td>
+                                                            <input type="string" style="width: 100px; padding: 5px" name="fakultas2" id="fakultas2">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <button class="btn btn-primary" type="submit" style="width:200px;">Submit</button>
+                                    </div>
+                                    <div class="column" style="padding: 20px; display: inline-block;">
+                                        <table class="table table-bordered" style="width: 300px">
+                                            <tbody>
+                                                <tr>
+                                                    <td>indekssekolah</td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param1"> </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>raportgeografi</td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param6"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>raportsosiologi</td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param7"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>raportsejarah</td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param8"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>raportekonomi </td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param9"> </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="formSBMIPA" style="display: none;">
+                                <div class="row">
+                                    <div class="column">
+                                        <form method="POST" action="/nilai/2" class="form" style="margin-top: 0px; padding: 20px;">
+                                            <table class="table table-bordered" style="width: 300px;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Id Pendaftaran</td>
+                                                        <td>
+                                                            <input type="number" style="width: 150px; padding: 5px" name="id_pendaftaran" id="id_pendaftaran">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Nama</td>
+                                                        <td>
+                                                            <input type="string" style="width: 250px; padding: 5px" name="name" id="name">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Fakultas1</td>
+                                                        <td>
+                                                            <input type="string" style="width: 100px; padding: 5px" name="fakultas1" id=fakultas1>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Fakultas2</td>
+                                                        <td>
+                                                            <input type="string" style="width: 100px; padding: 5px" name="fakultas2" id="fakultas2">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <button class="btn btn-primary" type="submit" style="width:200px;">Submit</button>
+                                    </div>
+                                    <div class="column" style="padding: 20px; display: inline-block;">
+                                        <table class="table table-bordered" style="width: 300px">
+                                            <tbody>
+                                                <tr>
+                                                    <td>tps</td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param1"> </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>tkamatematika</td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param2"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>tkafisika</td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param3"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>tkakimia</td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param4"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>tkabiologi </td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param5"> </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="formSBMIPS" style="display: none;">
+                                <div class="row">
+                                    <div class="column">
+                                        <form method="POST" action="/nilai/2" class="form" style="margin-top: 0px; padding: 20px;">
+                                            <table class="table table-bordered" style="width: 300px;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Id Pendaftaran</td>
+                                                        <td>
+                                                            <input type="number" style="width: 150px; padding: 5px" name="id_pendaftaran" id="id_pendaftaran">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Nama</td>
+                                                        <td>
+                                                            <input type="string" style="width: 250px; padding: 5px" name="name" id="name">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Fakultas1</td>
+                                                        <td>
+                                                            <input type="string" style="width: 100px; padding: 5px" name="fakultas1" id=fakultas1>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Fakultas2</td>
+                                                        <td>
+                                                            <input type="string" style="width: 100px; padding: 5px" name="fakultas2" id="fakultas2">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <button class="btn btn-primary" type="submit" style="width:200px;">Submit</button>
+                                    </div>
+                                    <div class="column" style="padding: 20px; display: inline-block;">
+                                        <table class="table table-bordered" style="width: 300px">
+                                            <tbody>
+                                                <tr>
+                                                    <td>tps</td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param1"> </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>tkageografi</td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param6"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>tkasosiologi</td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param7"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>tkasejarah</td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param8"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>tkaekonomi </td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param9"> </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="formMandiriIPA" style="display: none;">
+                                    <div class="row">
+                                        <div class="column">
+                                            <form method="POST" action="/nilai/3" class="form" style="margin-top: 0px; padding: 20px;">
+                                                <table class="table table-bordered" style="width: 300px;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Id Pendaftaran</td>
+                                                            <td>
+                                                                    <input type="number" style="width: 150px; padding: 5px" name="id_pendaftaran" id="id_pendaftaran">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Nama</td>
+                                                                <td>
+                                                                    <input type="string" style="width: 250px; padding: 5px" name="name" id="name">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Fakultas1</td>
+                                                                <td>
+                                                                    <input type="string" style="width: 100px; padding: 5px" name="fakultas1" id=fakultas1>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Fakultas2</td>
+                                                                <td>
+                                                                    <input type="string" style="width: 100px; padding: 5px" name="fakultas2" id="fakultas2">
+                                                                </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <button class="btn btn-primary" type="submit" style="width:200px;">Submit</button>
+                                        </div>
+                                        <div class="column" style="padding: 20px; display: inline-block;">
+                                            <table class="table table-bordered" style="width: 300px">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>tps</td>
+                                                        <td>
+                                                            <input type="number" style="width: 60px; padding: 5px" name="param1"> </td>
+                                                    </tr>
+    
+                                                    <tr>
+                                                        <td>tkamatematika</td>
+                                                        <td>
+                                                            <input type="number" style="width: 60px; padding: 5px" name="param2"> </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>tkafisika</td>
+                                                        <td>
+                                                            <input type="number" style="width: 60px; padding: 5px" name="param3"> </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>tkakimia</td>
+                                                        <td>
+                                                            <input type="number" style="width: 60px; padding: 5px" name="param4"> </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>tkabiologi </td>
+                                                        <td>
+                                                            <input type="number" style="width: 60px; padding: 5px" name="param5"> </td>
+                                                    </tr>
+    
+                                                </tbody>
+                                            </table>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div id="formMandiriIPS" style="display: none;">
+                                    <div class="row">
+                                        <div class="column">
+                                            <form method="POST" action="/nilai/3" class="form" style="margin-top: 0px; padding: 20px;">
+                                                <table class="table table-bordered" style="width: 300px;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Id Pendaftaran</td>
+                                                            <td>
+                                                                <input type="number" style="width: 150px; padding: 5px" name="id_pendaftaran" id="id_pendaftaran">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Nama</td>
+                                                            <td>
+                                                                <input type="string" style="width: 250px; padding: 5px" name="name" id="name">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Fakultas1</td>
+                                                            <td>
+                                                                <input type="string" style="width: 100px; padding: 5px" name="fakultas1" id=fakultas1>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Fakultas2</td>
+                                                            <td>
+                                                                <input type="string" style="width: 100px; padding: 5px" name="fakultas2" id="fakultas2">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <button class="btn btn-primary" type="submit" style="width:200px;">Submit</button>
+                                        </div>
+                                        <div class="column" style="padding: 20px; display: inline-block;">
+                                            <table class="table table-bordered" style="width: 300px">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>tps</td>
+                                                        <td>
+                                                            <input type="number" style="width: 60px; padding: 5px" name="param1"> </td>
+                                                    </tr>
+    
+                                                    <tr>
+                                                        <td>tkageografi</td>
+                                                        <td>
+                                                            <input type="number" style="width: 60px; padding: 5px" name="param6"> </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>tkasosiologi</td>
+                                                        <td>
+                                                            <input type="number" style="width: 60px; padding: 5px" name="param7"> </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>tkasejarah</td>
+                                                        <td>
+                                                            <input type="number" style="width: 60px; padding: 5px" name="param8"> </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>tkaekonomi </td>
+                                                        <td>
+                                                            <input type="number" style="width: 60px; padding: 5px" name="param9"> </td>
+                                                    </tr>
+    
+                                                </tbody>
+                                            </table>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <div id="formS2S3" style="display: none;">
+                                <div class="row">
+                                    <div class="column">
+                                        <form method="POST" action="/nilai/4" class="form" style="margin-top: 0px; padding: 20px;">
+                                            <table class="table table-bordered" style="width: 300px;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Id Pendaftaran</td>
+                                                        <td>
+                                                            <input type="number" style="width: 150px; padding: 5px" name="id_pendaftaran" id="id_pendaftaran">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Nama</td>
+                                                        <td>
+                                                            <input type="string" style="width: 250px; padding: 5px" name="name" id="name">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Fakultas1</td>
+                                                        <td>
+                                                            <input type="string" style="width: 100px; padding: 5px" name="fakultas1" id=fakultas1>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Fakultas2</td>
+                                                        <td>
+                                                            <input type="string" style="width: 100px; padding: 5px" name="fakultas2" id="fakultas2">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <button class="btn btn-primary" type="submit" style="width:200px;">Submit</button>
+                                    </div>
+                                    <div class="column" style="padding: 20px; display: inline-block;">
+                                        <table class="table table-bordered" style="width: 300px">
+                                            <tbody>
+                                                <tr>
+                                                    <td>indeksuniversitas</td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param1"> </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>ipk</td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param2"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>toefl_ibt</td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param3"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>toefl_cbt</td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param4"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>toefl_itp </td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param5"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ielts </td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param6"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>tpabappenas </td>
+                                                    <td>
+                                                        <input type="number" style="width: 60px; padding: 5px" name="param7"> </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        
+                            <div id="formS3" style="display: none;">
+                                    <div class="row">
+                                        <div class="column">
+                                            <form method="POST" action="/nilai/5" class="form" style="margin-top: 0px; padding: 20px;">
+                                                <table class="table table-bordered" style="width: 300px;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Id Pendaftaran</td>
+                                                            <td>
+                                                                <input type="number" style="width: 150px; padding: 5px" name="id_pendaftaran" id="id_pendaftaran">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Nama</td>
+                                                            <td>
+                                                                <input type="string" style="width: 250px; padding: 5px" name="name" id="name">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Fakultas1</td>
+                                                            <td>
+                                                                <input type="string" style="width: 100px; padding: 5px" name="fakultas1" id=fakultas1>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Fakultas2</td>
+                                                            <td>
+                                                                <input type="string" style="width: 100px; padding: 5px" name="fakultas2" id="fakultas2">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <button class="btn btn-primary" type="submit" style="width:200px;">Submit</button>
+                                        </div>
+                                        <div class="column" style="padding: 20px; display: inline-block;">
+                                            <table class="table table-bordered" style="width: 300px">
+                                                <tbody>
+                                                        <tr>
+                                                                <td>indeksuniversitas</td>
+                                                                <td>
+                                                                    <input type="number" style="width: 60px; padding: 5px" name="param1"> </td>
+                                                            </tr>
+            
+                                                            <tr>
+                                                                <td>ipk</td>
+                                                                <td>
+                                                                    <input type="number" style="width: 60px; padding: 5px" name="param2"> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>toefl_ibt</td>
+                                                                <td>
+                                                                    <input type="number" style="width: 60px; padding: 5px" name="param3"> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>toefl_cbt</td>
+                                                                <td>
+                                                                    <input type="number" style="width: 60px; padding: 5px" name="param4"> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>toefl_itp </td>
+                                                                <td>
+                                                                    <input type="number" style="width: 60px; padding: 5px" name="param5"> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>ielts </td>
+                                                                <td>
+                                                                    <input type="number" style="width: 60px; padding: 5px" name="param6"> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>tpabappenas </td>
+                                                                <td>
+                                                                    <input type="number" style="width: 60px; padding: 5px" name="param7"> </td>
+                                                            </tr>
+    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+
+
+
+                        </div>
+
+                        <!-- Bagian buat nampilin get nilai -->
+
+                        <div id="getnilai" style="display: none;">
+                            <form class="form-inline">
+                                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tipe Pendaftaran</label>
+                                <select class="custom-select my-1 mr-sm-2" id="getnilaibos" onclick="showFilter2()">
+                                        <option selected>Choose...</option>
+                                        <option value="1">SNMPTN</option>
+                                        <option value="2">SBMPTN</option>
+                                        <option value="3">Mandiri</option>
+                                        <option value="4">S2</option>
+                                        <option value="5">S3</option>
+                                </select>
+
+                                <label id="selectFilter" class="my-1 mr-2" for="inlineFormCustomSelectPref">Jenis</label>
+                                <select class="custom-select my-1 mr-sm-2" id="getnilaitipe" onclick="showFilter2()">
+                                    <option selected>Choose...</option>
+                                    <option value="1">IPA</option>
+                                    <option value="2">IPS</option>
+                                </select>
+                            </form>
+
+                            <div style="margin-top:10px">
+                                <form method="GET" action="#">
+                                    <div id="tombolnilaisnmipa" style="display: none; margin-left: 20px;">
+                                        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">ID Pendaftaran</label>
+                                        <input type="number" style="width: 250px; padding: 5px; " id="id_pendaftaran2" placeholder="Kosongkan untuk Get All2">
+                                        <button class="btn btn-primary" id="getnilaisnmipa">Submit</button>
+                                    </div>
+
+                                    <div id="tombolnilaisnmips" style="display: none;margin-left: 20px;">
+                                        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">ID Pendaftaran</label>
+                                        <input type="number" style="width: 250px; padding: 5px" id="id_pendaftaran3" placeholder="Kosongkan untuk Get All3">
+                                        <button class="btn btn-primary" id="getnilaisnmips">Submit</button>
+                                    </div>
+
+                                    <div id="tombolnilaisbmipa" style="display: none;margin-left: 20px;">
+                                        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">ID Pendaftaran</label>
+                                        <input type="number" style="width: 250px; padding: 5px" id="id_pendaftaran4" placeholder="Kosongkan untuk Get All4">
+                                        <button class="btn btn-primary" id="getnilaisbmipa">Submit</button>
+                                    </div>
+
+                                    <div id="tombolnilaisbmips" style="display: none;margin-left: 20px;">
+                                        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">ID Pendaftaran</label>
+                                        <input type="number" style="width: 250px; padding: 5px" id="id_pendaftaran5" placeholder="Kosongkan untuk Get All5">
+                                        <button class="btn btn-primary" id="getnilaisbmips">Submit</button>
+                                    </div>
+
+                                    <div id="tombolnilaimandiriipa" style="display: none;margin-left: 20px;">
+                                            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">ID Pendaftaran</label>
+                                            <input type="number" style="width: 250px; padding: 5px" id="id_pendaftaran6" placeholder="Kosongkan untuk Get All5">
+                                            <button class="btn btn-primary" id="getnilaimandiriipa">Submit</button>
+                                        </div>
+
+                                        <div id="tombolnilaimandiriips" style="display: none;margin-left: 20px;">
+                                                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">ID Pendaftaran</label>
+                                                <input type="number" style="width: 250px; padding: 5px" id="id_pendaftaran7" placeholder="Kosongkan untuk Get All5">
+                                                <button class="btn btn-primary" id="getnilaimandiriips">Submit</button>
+                                            </div>
+
+                                    <div id="tombolnilais2s3" style="display: none;margin-left: 20px;">
+                                        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">ID Pendaftaran</label>
+                                        <input type="number" style="width: 250px; padding: 5px" id="id_pendaftaran8" placeholder="Kosongkan untuk Get Allsd">
+                                        <button class="btn btn-primary" id="getnilais2s3">Submit</button>
+                                    </div>
+
+                                    <div id="tombolnilais3" style="display: none;margin-left: 20px;">
+                                            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">ID Pendaftaran</label>
+                                            <input type="number" style="width: 250px; padding: 5px" id="id_pendaftaran9" placeholder="Kosongkan untuk Get Allsd">
+                                            <button class="btn btn-primary" id="getnilais3">Submit</button>
+                                        </div>
+                                </form>
+                            </div>
+
+                            <div id="nodata" style="display: none; margin-top: 20px;">
+                                <h5>Data Tidak Ditemukan</h5>
+                            </div>
+
+                            <table id="tabelhasil2" class="table table-bordered" style="display: none; margin-top: 10px;">
+                                <thead id="headtabelhasil2">
+                                    <tr>
+                                        <th>ID Pendaftaran</th>
+                                        <th>Nama</th>
+                                        <th>Fakultas 1</th>
+                                        <th>Fakultas 2</th>
+                                        <th>tipependaftaran</th>
+                                        <th>indekssekolah</th>
+                                        <th>raportmat</th>
+                                        <th>raportfisika</th>
+                                        <th>raportkimia</th>
+                                        <th>raportbiologi</th>
+                                        <!-- <th>raportgeografi</th>
+                              <th>raportsosiologi</th>
+                              <th>raportsejarah</th>
+                              <th>raportekonomi</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyhasil2"></tbody>
+                            </table>
+
+                            <table id="tabelhasil3" class="table table-bordered" style="display: none; margin-top: 10px;">
+                                <thead id="headtabelhasil3">
+                                    <tr>
+                                        <th>ID Pendaftaran</th>
+                                        <th>Nama</th>
+                                        <th>Fakultas 1</th>
+                                        <th>Fakultas 2</th>
+                                        <th>tipependaftaran</th>
+                                        <th>indekssekolah</th>
+                                        <!-- <th>raportmat</th>
+                                  <th>raportkimia</th>
+                                  <th>raportbiologi</th> -->
+                                        <th>raportgeografi</th>
+                                        <th>raportsosiologi</th>
+                                        <th>raportsejarah</th>
+                                        <th>raportekonomi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyhasil3"></tbody>
+                            </table>
+
+                            <table id="tabelhasil4" class="table table-bordered" style="display: none; margin-top: 10px;">
+                                <thead id="headtabelhasil4">
+                                    <tr>
+                                        <th>ID Pendaftaran</th>
+                                        <th>Nama</th>
+                                        <th>Fakultas 1</th>
+                                        <th>Fakultas 2</th>
+                                        <th>tipependaftaran</th>
+                                        <th>tps</th>
+                                        <th>tkatmatematika</th>
+                                        <th>tkafisika</th>
+                                        <th>tkakimia</th>
+                                        <th>tkabiologi</th>
+                                        <!-- <th>raportgeografi</th>
+                                      <th>raportsosiologi</th>
+                                      <th>raportsejarah</th>
+                                      <th>raportekonomi</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyhasil4"></tbody>
+                            </table>
+
+                            <table id="tabelhasil5" class="table table-bordered" style="display: none; margin-top: 10px;">
+                                <thead id="headtabelhasil5">
+                                    <tr>
+                                        <th>ID Pendaftaran</th>
+                                        <th>Nama</th>
+                                        <th>Fakultas 1</th>
+                                        <th>Fakultas 2</th>
+                                        <th>tipependaftaran</th>
+                                        <th>tps</th>
+                                        <!-- <th>tkamatematika</th>
+                                          <th>tkakimia</th>
+                                          <th>tkabiologi</th> -->
+                                        <th>tkageografi</th>
+                                        <th>tkasosiologi</th>
+                                        <th>tkasejarah</th>
+                                        <th>tkaekonomi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyhasil5"></tbody>
+                            </table>
+
+                            <table id="tabelhasil6" class="table table-bordered" style="display: none; margin-top: 10px;">
+                                <thead id="headtabelhasil6">
+                                    <tr>
+                                        <th>ID Pendaftaran</th>
+                                        <th>Nama</th>
+                                        <th>Fakultas 1</th>
+                                        <th>Fakultas 2</th>
+                                        <th>tipependaftaran</th>
+                                        <th>indeksuniversitas</th>
+                                        <th>ipk</th>
+                                        <th>toefl_ibt</th>
+                                        <th>toefl_cbt</th>
+                                        <th>toefl_itp</th>
+                                        <th>ielts</th>
+                                        <th>tpabappenas</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyhasil6"></tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                        
+                        <form>
+                            <label class="radio-inline">
+                              <input type="radio" name="optradio" onclick="show11()">POST
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="optradio" onclick="show12()" >GET
+                            </label>
+                          </form>        
+                        
+                        
+            <div id="postnilai2" style="display: none;"> 
+                    <form class="form-inline">
+                            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tipe Pendaftaran</label>
+                            <select class="custom-select my-1 mr-sm-2" id="tipePendaftaran2" onclick="showForm2()">
+                                <option selected>Choose...</option>
+                                <option value="1">SNMPTN</option>
+                                <option value="2">SBMPTN</option>
+                                <option value="3">Mandiri</option>
+                                <option value="4">S2</option>
+                                <option value="5">S3</option>
+                            </select>
+
+                            <label id="selectFakultas2" class="my-1 mr-2" for="inlineFormCustomSelectPref">Jenis</label>
+                            <select class="custom-select my-1 mr-sm-2" id="tipeFakultas2" onclick="showForm2()">
+                                <option selected>Choose...</option>
+                                <option value="1">IPA</option>
+                                <option value="2">IPS</option>
+                            </select>
+                        </form>
+
+                        <div id="formSNMIPA2" style="display: none;">
+                            <form method="POST" action="/parameter/1" class="form" style="margin-top: 0px; padding: 20px;">
+                                <div class="row" style="margin-top: 10px;">
+                                    <label class="my-1 mr-2" style="margin-left:18px;" for="inlineFormCustomSelectPref" required>Fakultas</label>
+                                    <input style="margin-right: 10px;" type="string" style="width: 250px; padding: 5px" name="fakultas">
+                                </div>
+
+                                <table class="table table-bordered" style="width: 300px;margin-top:30px;">
+
+                                    <tbody>
+                                        <tr>
+                                            <td>indekssekolah</td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="idekssekolah" required> </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>raportmat</td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="raportmat" required> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>raportfisika</td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="raportfisika" required> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>raportkimia</td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="raportkimia" required> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>raportbiologi </td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="raportbiologi" required> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>passinggrade </td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="passinggrade" required> </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <button class="btn btn-primary" type="submit" style="width:300px">Submit</button>
+                            </form>
+                        </div>
+
+                        <div id="formSNMIPS2" style="display: none;">
+
+                            <form method="POST" action="/parameter/1" class="form" style="margin-top: 0px; padding: 20px;">
+
+                                <div class="row" style="margin-top: 10px;">
+                                    <label class="my-1 mr-2" style="margin-left : 18px;" for="inlineFormCustomSelectPref" required>Fakultas</label>
+                                    <input style="margin-right: 10px;" type="string" style="width: 250px; padding: 5px" name="fakultas">
+                                </div>
+
+                                <table class="table table-bordered" style="width: 300px;margin-top:30px;">
+
+                                    <tbody>
+                                        <tr>
+                                            <td>indekssekolah</td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="idekssekolah"> </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>raportgeografi</td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="raportgeografi"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>raportsosiologi</td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="raportsosiologi"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>raportsejarah</td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="raportsejarah"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>raportekonomi </td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="raportekonomi"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>passinggrade </td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="passinggrade" required> </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <button class="btn btn-primary" type="submit" style="width:300px">Submit</button>
+                            </form>
+                        </div>
+
+                        <div id="formSBMIPA2" style="display: none;">
+
+                            <form method="POST" action="/parameter/2" class="form" style="margin-top: 0px; padding: 20px;">
+
+                                <div class="row" style="margin-top: 10px;">
+                                    <label class="my-1 mr-2" style="margin-left : 18px;" for="inlineFormCustomSelectPref" required>Fakultas</label>
+                                    <input style="margin-right: 10px;" type="string" style="width: 250px; padding: 5px" name="fakultas">
+                                </div>
+
+                                <table class="table table-bordered" style="width: 300px;margin-top:30px;">
+
+                                    <tbody>
+                                        <tr>
+                                            <td>tps</td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="tps"> </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>tkamatematika</td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="tkamatematika"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>tkafisika</td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="tkafsika"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>tkakimia</td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="tkakimia"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>tkabiologi </td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="tkabiologi"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>passinggrade </td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="passinggrade" required> </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <button class="btn btn-primary" type="submit" style="width:300px">Submit</button>
+                            </form>
+                        </div>
+
+                        <div id="formSBMIPS2" style="display: none;">
+                            <form method="POST" action="/parameter/2" class="form" style="margin-top: 0px; padding: 20px;">
+                                <div class="row" style="margin-top: 10px;">
+                                    <label class="my-1 mr-2" style="margin-left : 18px;" for="inlineFormCustomSelectPref" required>Fakultas</label>
+                                    <input style="margin-right: 10px;" type="string" style="width: 250px; padding: 5px" name="fakultas">
+                                </div>
+
+                                <table class="table table-bordered" style="width: 300px;margin-top:30px;">
+
+                                    <tbody>
+                                        <tr>
+                                            <td>tps</td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="tps"> </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>tkageografi</td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="tkageografi"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>tkasosiologi</td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="tkasosiologi"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>tkasejarah</td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="tkasejarah"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>tkaekonomi </td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="tkaekonomi"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>passinggrade </td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="passinggrade" required> </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <button class="btn btn-primary" type="submit" style="width:300px">Submit</button>
+                            </form>
+                        </div>
+
+                        <div id="formMandiriIPA2" style="display: none;">
+
+                                <form method="POST" action="/parameter/3" class="form" style="margin-top: 0px; padding: 20px;">
+    
+                                    <div class="row" style="margin-top: 10px;">
+                                        <label class="my-1 mr-2" style="margin-left : 18px;" for="inlineFormCustomSelectPref" required>Fakultas</label>
+                                        <input style="margin-right: 10px;" type="string" style="width: 250px; padding: 5px" name="fakultas">
+                                    </div>
+    
+                                    <table class="table table-bordered" style="width: 300px;margin-top:30px;">
+    
+                                        <tbody>
+                                            <tr>
+                                                <td>tps</td>
+                                                <td>
+                                                    <input type="number" style="width: 60px; padding: 5px" name="tps"> </td>
+                                            </tr>
+    
+                                            <tr>
+                                                <td>tkamatematika</td>
+                                                <td>
+                                                    <input type="number" style="width: 60px; padding: 5px" name="tkamatematika"> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>tkafisika</td>
+                                                <td>
+                                                    <input type="number" style="width: 60px; padding: 5px" name="tkafsika"> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>tkakimia</td>
+                                                <td>
+                                                    <input type="number" style="width: 60px; padding: 5px" name="tkakimia"> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>tkabiologi </td>
+                                                <td>
+                                                    <input type="number" style="width: 60px; padding: 5px" name="tkabiologi"> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>passinggrade </td>
+                                                <td>
+                                                    <input type="number" style="width: 60px; padding: 5px" name="passinggrade" required> </td>
+                                            </tr>
+    
+                                        </tbody>
+                                    </table>
+                                    <button class="btn btn-primary" type="submit" style="width:300px">Submit</button>
+                                </form>
+                            </div>
+    
+                            <div id="formMandiriIPS2" style="display: none;">
+                                <form method="POST" action="/parameter/3" class="form" style="margin-top: 0px; padding: 20px;">
+                                    <div class="row" style="margin-top: 10px;">
+                                        <label class="my-1 mr-2" style="margin-left : 18px;" for="inlineFormCustomSelectPref" required>Fakultas</label>
+                                        <input style="margin-right: 10px;" type="string" style="width: 250px; padding: 5px" name="fakultas">
+                                    </div>
+    
+                                    <table class="table table-bordered" style="width: 300px;margin-top:30px;">
+    
+                                        <tbody>
+                                            <tr>
+                                                <td>tps</td>
+                                                <td>
+                                                    <input type="number" style="width: 60px; padding: 5px" name="tps"> </td>
+                                            </tr>
+    
+                                            <tr>
+                                                <td>tkageografi</td>
+                                                <td>
+                                                    <input type="number" style="width: 60px; padding: 5px" name="tkageografi"> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>tkasosiologi</td>
+                                                <td>
+                                                    <input type="number" style="width: 60px; padding: 5px" name="tkasosiologi"> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>tkasejarah</td>
+                                                <td>
+                                                    <input type="number" style="width: 60px; padding: 5px" name="tkasejarah"> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>tkaekonomi </td>
+                                                <td>
+                                                    <input type="number" style="width: 60px; padding: 5px" name="tkaekonomi"> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>passinggrade </td>
+                                                <td>
+                                                    <input type="number" style="width: 60px; padding: 5px" name="passinggrade" required> </td>
+                                            </tr>
+    
+                                        </tbody>
+                                    </table>
+                                    <button class="btn btn-primary" type="submit" style="width:300px">Submit</button>
+                                </form>
+                            </div>
+
+                        <div id="formS2S32" style="display: none;">
+                            <form method="POST" action="/parameter/4" class="form" style="margin-top: 0px; padding: 20px;">
+                                <div class="row" style="margin-top: 10px;">
+                                    <label class="my-1 mr-2" style="margin-left : 18px;" for="inlineFormCustomSelectPref" required>Fakultas</label>
+                                    <input style="margin-right: 10px;" type="string" style="width: 250px; padding: 5px" name="fakultas">
+                                </div>
+
+                                <table class="table table-bordered" style="width: 300px;margin-top:30px;">
+
+                                    <tbody>
+                                        <tr>
+                                            <td>indeksuniversitas</td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="indeksuniversitas"> </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>ipk</td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="ipk"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>toefl_ibt</td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="toefl_ibt"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>toefl_cbt</td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="toefl_cbt"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>toefl_itp </td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="toefl_itp"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>ielts </td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="ielts"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>tpabappenas </td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="tpabappenas"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>passinggrade </td>
+                                            <td>
+                                                <input type="number" style="width: 60px; padding: 5px" name="passinggrade" required> </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <button class="btn btn-primary" type="submit" style="width:300px">Submit</button>
+                            </form>
+                        </div>
+
+                        <div id="formS32" style="display: none;">
+                                <form method="POST" action="/parameter/5" class="form" style="margin-top: 0px; padding: 20px;">
+                                    <div class="row" style="margin-top: 10px;">
+                                        <label class="my-1 mr-2" style="margin-left : 18px;" for="inlineFormCustomSelectPref" required>Fakultas</label>
+                                        <input style="margin-right: 10px;" type="string" style="width: 250px; padding: 5px" name="fakultas">
+                                    </div>
+    
+                                    <table class="table table-bordered" style="width: 300px;margin-top:30px;">
+    
+                                        <tbody>
+                                            <tr>
+                                                <td>indeksuniversitas</td>
+                                                <td>
+                                                    <input type="number" style="width: 60px; padding: 5px" name="indeksuniversitas"> </td>
+                                            </tr>
+    
+                                            <tr>
+                                                <td>ipk</td>
+                                                <td>
+                                                    <input type="number" style="width: 60px; padding: 5px" name="ipk"> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>toefl_ibt</td>
+                                                <td>
+                                                    <input type="number" style="width: 60px; padding: 5px" name="toefl_ibt"> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>toefl_cbt</td>
+                                                <td>
+                                                    <input type="number" style="width: 60px; padding: 5px" name="toefl_cbt"> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>toefl_itp </td>
+                                                <td>
+                                                    <input type="number" style="width: 60px; padding: 5px" name="toefl_itp"> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>ielts </td>
+                                                <td>
+                                                    <input type="number" style="width: 60px; padding: 5px" name="ielts"> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>tpabappenas </td>
+                                                <td>
+                                                    <input type="number" style="width: 60px; padding: 5px" name="tpabappenas"> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>passinggrade </td>
+                                                <td>
+                                                    <input type="number" style="width: 60px; padding: 5px" name="passinggrade" required> </td>
+                                            </tr>
+    
+                                        </tbody>
+                                    </table>
+                                    <button class="btn btn-primary" type="submit" style="width:300px">Submit</button>
+                                </form>
+                            </div>
+    
+
+                    </div>
+                
+                    <div id="getnilai2" style="display: none;">
+                        <form class="form-inline">
+                            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tipe Pendaftaran</label>
+                            <select class="custom-select my-1 mr-sm-2" id="getnilaibos2" onclick="showFilter3()">
+                                    <option selected>Choose...</option>
+                                    <option value="1">SNMPTN</option>
+                                    <option value="2">SBMPTN</option>
+                                    <option value="3">Mandiri</option>
+                                    <option value="4">S2</option>
+                                    <option value="5">S3</option>
+                            </select>
+            
+                            <label id="selectFilter2" class="my-1 mr-2" for="inlineFormCustomSelectPref">Jenis</label>
+                            <select class="custom-select my-1 mr-sm-2" id="getnilaitipe2" onclick="showFilter3()">
+                              <option selected>Choose...</option>
+                                    <option value="1">IPA</option>
+                                    <option value="2">IPS</option>
+                            </select>
+                     </form>
+                    
+        
+                    <div style="margin-top:10px">
+                        <form method="GET" action="#">
+                            <div id="tombolnilaisnmipa2" style="display: none;">
+                                 <!-- <label class="my-1 mr-2" for="inlineFormCustomSelectPref"  >ID Pendaftaran</label>
+                                 <input type="string" style="width: 250px; padding: 5px" id="id_pendaftaran22" placeholder="Kosongkan untuk Get All22">  -->
+                                 <button class="btn btn-primary" id="getnilaisnmipa2">Submit</button>
+                            </div>
+                
+                            <div id="tombolnilaisnmips2" style="display: none;">
+                                    <!-- <label class="my-1 mr-2" for="inlineFormCustomSelectPref"  >ID Pendaftaran</label>
+                                    <input type="string" style="width: 250px; padding: 5px" id="id_pendaftaran32" placeholder="Kosongkan untuk Get All33">  -->
+                                    <button class="btn btn-primary" id="getnilaisnmips2">Submit</button>
+                               </div>
+                
+                            <div id="tombolnilaisbmipa2" style="display: none;">
+                                    <!-- <label class="my-1 mr-2" for="inlineFormCustomSelectPref"  >ID Pendaftaran</label>
+                                    <input type="string" style="width: 250px; padding: 5px" id="id_pendaftaran42" placeholder="Kosongkan untuk Get All4">  -->
+                                    <button class="btn btn-primary" id="getnilaisbmipa2" >Submit</button>
+                            </div>
+                
+                            <div id="tombolnilaisbmips2" style="display: none;">
+                                    <!-- <label class="my-1 mr-2" for="inlineFormCustomSelectPref"  >ID Pendaftaran</label>
+                                    <input type="string" style="width: 250px; padding: 5px" id="id_pendaftaran52" placeholder="Kosongkan untuk Get All5">  -->
+                                    <button class="btn btn-primary" id="getnilaisbmips2" >Submit</button>
+                            </div>
+
+                            <div id="tombolnilaimandiriipa2" style="display: none;">
+                                    <!-- <label class="my-1 mr-2" for="inlineFormCustomSelectPref"  >ID Pendaftaran</label>
+                                    <input type="string" style="width: 250px; padding: 5px" id="id_pendaftaran42" placeholder="Kosongkan untuk Get All4">  -->
+                                    <button class="btn btn-primary" id="getnilaimandiriipa2" >Submit</button>
+                            </div>
+                
+                            <div id="tombolnilaimandiriips2" style="display: none;">
+                                    <!-- <label class="my-1 mr-2" for="inlineFormCustomSelectPref"  >ID Pendaftaran</label>
+                                    <input type="string" style="width: 250px; padding: 5px" id="id_pendaftaran52" placeholder="Kosongkan untuk Get All5">  -->
+                                    <button class="btn btn-primary" id="getnilaimandiriips2" >Submit</button>
+                            </div>
+                
+                               <div id="tombolnilais2s32" style="display: none;">
+                                    <!-- <label class="my-1 mr-2" for="inlineFormCustomSelectPref"  >ID Pendaftaran</label>
+                                    <input type="string" style="width: 250px; padding: 5px" id="id_pendaftaran62" placeholder="Kosongkan untuk Get Allsd">  -->
+                                    <button class="btn btn-primary" id="getnilais2s32" >Submit</button>
+                               </div>
+
+                               <div id="tombolnilais32" style="display: none;">
+                                    <!-- <label class="my-1 mr-2" for="inlineFormCustomSelectPref"  >ID Pendaftaran</label>
+                                    <input type="string" style="width: 250px; padding: 5px" id="id_pendaftaran62" placeholder="Kosongkan untuk Get Allsd">  -->
+                                    <button class="btn btn-primary" id="getnilais32" >Submit</button>
+                               </div>
+                           </form>
+                        </div>
+                
+                        <div id="nodata" style="display: none; margin-top: 20px;">
+                                <h1>Data Tidak Ditemukan</h1>
+                             </div>
+                
+                                <table id="tabelhasil22" class="table table-bordered" style="display: none; margin-top: 10px;">
+                                        <thead id="headtabelhasil22">
+                                            <tr>
+                                              <th>Fakultas</th>
+                                              <th>tipependaftaran</th>
+                                              <th>indekssekolah</th>
+                                              <th>raportmat</th>
+                                              <th>raportfisika</th>
+                                              <th>raportkimia</th>
+                                              <th>raportbiologi</th>
+                                              <th>passinggrade</th>
+                                              <!-- <th>raportgeografi</th>
+                                              <th>raportsosiologi</th>
+                                              <th>raportsejarah</th>
+                                              <th>raportekonomi</th> -->
+                                           </tr>
+                                           </thead>
+                                           <tbody id="bodyhasil22"></tbody>
+                                      </table>
+                
+                                      <table id="tabelhasil32" class="table table-bordered" style="display: none; margin-top: 10px;">
+                                            <thead id="headtabelhasil32">
+                                                <tr>
+                                                    <th>Fakultas</th>
+                                                    <th>tipependaftaran</th>
+                                                    <th>indekssekolah</th>
+                                                  <!-- <th>raportmat</th>
+                                                  <th>raportkimia</th>
+                                                  <th>raportbiologi</th> -->
+                                                  <th>raportgeografi</th>
+                                                  <th>raportsosiologi</th>
+                                                  <th>raportsejarah</th>
+                                                  <th>raportekonomi</th>
+                                                  <th>passinggrade</th>
+                                               </tr>
+                                               </thead>
+                                               <tbody id="bodyhasil32"></tbody>
+                                          </table>
+                
+                                          <table id="tabelhasil42" class="table table-bordered" style="display: none; margin-top: 10px;">
+                                                <thead id="headtabelhasil42">
+                                                    <tr>
+                                                        <th>Fakultas</th>
+                                                        <th>tipependaftaran</th>
+                                                      <th>tps</th>
+                                                      <th>tkatmatematika</th>
+                                                      <th>tkafisika</th>
+                                                      <th>tkakimia</th>
+                                                      <th>tkabiologi</th>
+                                                      <th>passinggrade</th>
+                                                      <!-- <th>raportgeografi</th>
+                                                      <th>raportsosiologi</th>
+                                                      <th>raportsejarah</th>
+                                                      <th>raportekonomi</th> -->
+                                                   </tr>
+                                                   </thead>
+                                                   <tbody id="bodyhasil42"></tbody>
+                                              </table>
+                
+                                              <table id="tabelhasil52" class="table table-bordered" style="display: none; margin-top: 10px;">
+                                                    <thead id="headtabelhasil52">
+                                                        <tr>
+                                                            <th>Fakultas</th>
+                                                            <th>tipependaftaran</th>
+                                                          <th>tps</th>
+                                                          <!-- <th>tkamatematika</th>
+                                                          <th>tkakimia</th>
+                                                          <th>tkabiologi</th> -->
+                                                          <th>tkageografi</th>
+                                                          <th>tkasosiologi</th>
+                                                          <th>tkasejarah</th>
+                                                          <th>tkaekonomi</th>
+                                                          <th>passinggrade</th>
+                                                       </tr>
+                                                       </thead>
+                                                       <tbody id="bodyhasil52"></tbody>
+                                                  </table>
+                
+                                                  <table id="tabelhasil62" class="table table-bordered" style="display: none; margin-top: 10px;">
+                                                        <thead id="headtabelhasil62">
+                                                            <tr>
+                                                                <th>Fakultas</th>
+                                                                <th>tipependaftaran</th>
+                                                              <th>indeksuniversitas</th>
+                                                              <th>ipk</th>
+                                                              <th>toefl_ibt</th>
+                                                              <th>toefl_cbt</th>
+                                                              <th>toefl_itp</th>
+                                                              <th>ielts</th>
+                                                              <th>tpabappenas</th>
+                                                              <th>passinggrade</th>
+                                                           </tr>
+                                                           </thead>
+                                                           <tbody id="bodyhasil62"></tbody>
+                                                      </table>
+        
+                                                      </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+
+                            <div class="row" style="margin-bottom: 10px">
+                                    
+                                    <!-- <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tipe Pendaftaran</label> -->
+                                    <!-- <select style="width: 150px; " class="custom-select my-1 mr-sm-2" id="tipePDF">
+                                        <option selected>Choose...</option>
+                                        <option value="1">SNMPTN</option>
+                                        <option value="2">SBMPTN</option>
+                                        <option value="3">Mandiri</option>
+                                        <option value="4">S2</option>
+                                        <option value="5">S3</option>
+                                    </select> -->
+
+                                    <button class="btn btn-warning" id="pdf" onclick="window.location.href='http://178.128.104.74/penetapankelulusan/pdf' " style="width:218px; margin-right: 10px; margin-left: 10px;">Generate PDF
+                                        </button>
+                                </div>
+
+
+                        <form class="form-inline">
+                            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Filter</label>
+                            <select class="custom-select my-1 mr-sm-2" id="filter" onclick="showFilter()">
+                                <option selected>Choose...</option>
+                                <option value="1">ID</option>
+                                <option value="2">Tipe Pendaftaran</option>
+                                <option value="3">Fakultas</option>
+                                <option value="4">Semua</option>
+                            </select>
+
+                        </form>
+                        <div style="margin: 10px ;">
+                            <form method="GET" action="#">
+                                <div id="fid" style="display: none; margin-left:7px;margin-top:20px;">
+                                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">ID Pendaftaran</label>
+                                    <input type="number" style="width: 250px; padding: 5px" id="id_pendaftaran">
+                                    <button class="btn btn-primary" id="cariData">Submit</button>
+                                </div>
+
+                                <div id="ftipe" style="display: none;margin-left:7px;margin-top:20px;">
+                                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tipe Pendaftaran</label>
+                                    <input type="string" style="width: 250px; padding: 5px" id="tipependaftaran">
+                                    <button class="btn btn-primary" id="cariData2">Submit</button>
+                                </div>
+
+                                <div id="ffakultas" style="display: none;margin-left:7px;margin-top:20px;">
+                                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Fakultas</label>
+                                    <input type="string" style="width: 250px; padding: 5px" id="fakultas">
+                                    <button class="btn btn-primary" id="cariData3">Submit</button>
+                                </div>
+                                <div id="fsemua" style="display: none;margin-top:20px;">
+                                    <button class="btn btn-primary" id="semua">Submit</button>
+                                </div>
+                            </form>
+
+                            <!-- Data tidak Ditemukan -->
+
+                            <div id="nodata" style="display: none; margin-top: 20px;">
+                                <h1>Data Tidak Ditemukan</h1>
+                            </div>
+
+                            <!-- Tabel Hasil -->
+
+                            <table id="tabelhasil" class="table table-bordered" style="display: none; margin-top: 10px;">
+                                <thead id="headtabelhasil">
+                                    <tr>
+                                        <th>ID Pendaftaran</th>
+                                        <th>Nama</th>
+                                        <th>Fakultas</th>
+                                        <th>Tipe Pendaftaran</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyhasil"></tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+    <!-- <script src="hide-show-fields-form.js"></script> -->
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+
+//psot pake ajax
+
+// $(document).ready(function () {  
+//              $("#postsnmipa").click(function () {  
+//                  var nilai = new Object();  
+//                  nilai.id = $('#id').val();  
+//                  nilai.name = $('#name').val();
+//                  nilai.fakultas1 = $('#fakultas1').val();
+//                  nilai.fakultas2 = $('#fakultas2').val();
+//                  nilai.indekssekolah = $('#indekssekolah').val();
+//                  nilai.raportmat = $('#raportmat').val();
+//                  nilai.raportfisika = $('#raportfisika').val();
+//                  nilai.raportkimia = $('#raportkimia').val();
+//                  nilai.raportbiologi = $('#raportbiologi').val();
+                 
+//                  $.ajax({  
+//                      url: 'http://178.128.104.74/penetapankelulusan/nilai/1',  
+//                      type: 'POST',  
+//                      dataType: 'json',  
+//                      data: nilai,  
+//                      success: function (data, textStatus, xhr) {  
+//                          console.log(data);  
+//                      },  
+//                      error: function (xhr, textStatus, errorThrown) {  
+//                          console.log('Error in Operation');  
+//                      }  
+//                  });  
+//              });  
+//          }); 
+
+
+$(document).ready(function(){
+    $("#getnilaisnmipa2").click(function() {
+        
+            tabmodiv=document.getElementById('bodyhasil22');
+                    var endpoint = 'http://178.128.104.74/penetapankelulusan/parameter/tipe/1';
+                    $.ajax({
+                    url: endpoint,
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        content="";
+                        console.log("jalan cu")
+                        
+                        if(response.data!=null){
+                            $.each(response.data, function(key, value){
+                            if (response.data[key].raportmat!=null){
+                            content+=
+                                "<tr>" +
+                                                
+                                    "<td>"+response.data[key].fakultas+"</th>\n" +
+                                    "<td>"+response.data[key].tipependaftaran+"</th>\n" +
+                                    "<td>"+response.data[key].idekssekolah+"</th>\n" +
+                                    "<td>"+response.data[key].raportmat+"</th>\n" +
+                                    "<td>"+response.data[key].raportfisika+"</th>\n" +
+                                    "<td>"+response.data[key].raportkimia+"</th>\n" +
+                                    "<td>"+response.data[key].raportbiologi+"</th>\n" +
+                                    "<td>"+response.data[key].passinggrade+"</th>\n" +
+                                    // "<td>"+response.data.raportgeografi+"</th>\n" +
+                                    // "<td>"+response.data.raportsosiologi+"</th>\n" +
+                                    // "<td>"+response.data.raportsejarah+"</th>\n" +
+                                    // "<td>"+response.data.raportekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                                })
+                                console.log("bener dah")
+                       tabmodiv.innerHTML = content
+                       hideAll7();
+                       document.getElementById('nodata').style.display = 'none';
+                       showOneForm('tabelhasil22')
+
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        hideAll7();
+                    }
+                        
+                },
+                    error: function(response) {
+                        console.error(response)
+                        console.log(response)
+                    }
+                })
+    })
+})
+
+$(document).ready(function(){
+    $("#getnilaisnmips2").click(function() {
+        
+            tabmodiv=document.getElementById('bodyhasil32');
+                    var endpoint = 'http://178.128.104.74/penetapankelulusan/parameter/tipe/1';
+                    $.ajax({
+                    url: endpoint,
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        content="";
+                        
+                        console.log("jalan cu")
+                        
+                        if(response.data!=null){
+                            $.each(response.data, function(key, value){
+                            if (response.data[key].raportmat==null){
+                            content+=
+                                "<tr>" +
+                                                
+                                    "<td>"+response.data[key].fakultas+"</th>\n" +
+                                    "<td>"+response.data[key].tipependaftaran+"</th>\n" +
+                                    "<td>"+response.data[key].idekssekolah+"</th>\n" +
+                                    "<td>"+response.data[key].raportgeografi+"</th>\n" +
+                                    "<td>"+response.data[key].raportsosiologi+"</th>\n" +
+                                    "<td>"+response.data[key].raportsejarah+"</th>\n" +
+                                    "<td>"+response.data[key].raportekonomi+"</th>\n" +
+                                    "<td>"+response.data[key].passinggrade+"</th>\n" +
+                                    // "<td>"+response.data.raportgeografi+"</th>\n" +
+                                    // "<td>"+response.data.raportsosiologi+"</th>\n" +
+                                    // "<td>"+response.data.raportsejarah+"</th>\n" +
+                                    // "<td>"+response.data.raportekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                                })
+                                console.log("bener dah")
+                       tabmodiv.innerHTML = content
+                       hideAll7();
+                       document.getElementById('nodata').style.display = 'none';
+                       showOneForm('tabelhasil32')
+
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        hideAll7();
+                    }
+                        
+                },
+                    error: function(response) {
+                        console.error(response)
+                        console.log(response)
+                    }
+                })
+    })
+})
+
+$(document).ready(function(){
+    $("#getnilaisbmipa2").click(function() {
+        
+            tabmodiv=document.getElementById('bodyhasil42');
+                    var endpoint = 'http://178.128.104.74/penetapankelulusan/parameter/tipe/2';
+                    $.ajax({
+                    url: endpoint,
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        content="";
+                        console.log(response)
+                        
+                        if(response.data!=null){
+                            $.each(response.data, function(key, value){
+                            if (response.data[key].tkamatematika!=null){
+                            content+=
+                                "<tr>" +
+                                                
+                                    "<td>"+response.data[key].fakultas+"</th>\n" +
+                                    "<td>"+response.data[key].tipependaftaran+"</th>\n" +
+                                    
+                                    "<td>"+response.data[key].tps+"</th>\n" +
+                                    "<td>"+response.data[key].tkamatematika+"</th>\n" +
+                                    "<td>"+response.data[key].tkafisika+"</th>\n" +
+                                    "<td>"+response.data[key].tkakimia+"</th>\n" +
+                                    "<td>"+response.data[key].tkabiologi+"</th>\n" +
+                                    "<td>"+response.data[key].passinggrade+"</th>\n" +
+                                    // "<td>"+response.data.raportgeografi+"</th>\n" +
+                                    // "<td>"+response.data.raportsosiologi+"</th>\n" +
+                                    // "<td>"+response.data.raportsejarah+"</th>\n" +
+                                    // "<td>"+response.data.raportekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                                })
+                                console.log("bener dah")
+                       tabmodiv.innerHTML = content
+                       hideAll7();
+                       document.getElementById('nodata').style.display = 'none';
+                       showOneForm('tabelhasil42')
+
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        hideAll7();
+                    }
+                        
+                },
+                    error: function(response) {
+                        console.error(response)
+                        console.log(response)
+                    }
+                })
+    })
+})
+
+$(document).ready(function(){
+    $("#getnilaisbmips2").click(function() {
+        
+            tabmodiv=document.getElementById('bodyhasil52');
+                    var endpoint = 'http://178.128.104.74/penetapankelulusan/parameter/tipe/2';
+                    $.ajax({
+                    url: endpoint,
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        content="";
+                        console.log("jalan cu")
+                        
+                        if(response.data!=null){
+                            $.each(response.data, function(key, value){
+                            if (response.data[key].tkamatematika==null){
+                            content+=
+                                "<tr>" +
+                                                
+                                    "<td>"+response.data[key].fakultas+"</th>\n" +
+                                    "<td>"+response.data[key].tipependaftaran+"</th>\n" +
+                                    
+                                    "<td>"+response.data[key].tps+"</th>\n" +
+                                    "<td>"+response.data[key].tkageografi+"</th>\n" +
+                                    "<td>"+response.data[key].tkasosiologi+"</th>\n" +
+                                    "<td>"+response.data[key].tkasejarah+"</th>\n" +
+                                    "<td>"+response.data[key].tkaekonomi+"</th>\n" +
+                                    "<td>"+response.data[key].passinggrade+"</th>\n" +
+                                    // "<td>"+response.data.raportgeografi+"</th>\n" +
+                                    // "<td>"+response.data.raportsosiologi+"</th>\n" +
+                                    // "<td>"+response.data.raportsejarah+"</th>\n" +
+                                    // "<td>"+response.data.raportekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                                })
+                                console.log("bener dah")
+                       tabmodiv.innerHTML = content
+                       hideAll7();
+                       document.getElementById('nodata').style.display = 'none';
+                       showOneForm('tabelhasil52')
+
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        hideAll7();
+                    }
+                        
+                },
+                    error: function(response) {
+                        console.error(response)
+                        console.log(response)
+                    }
+                })
+    })
+})
+
+$(document).ready(function(){
+    $("#getnilaimandiriipa2").click(function() {
+        
+            tabmodiv=document.getElementById('bodyhasil42');
+                    var endpoint = 'http://178.128.104.74/penetapankelulusan/parameter/tipe/3';
+                    $.ajax({
+                    url: endpoint,
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        content="";
+                        console.log(response)
+                        
+                        if(response.data!=null){
+                            $.each(response.data, function(key, value){
+                            if (response.data[key].tkamatematika!=null){
+                            content+=
+                                "<tr>" +
+                                                
+                                    "<td>"+response.data[key].fakultas+"</th>\n" +
+                                    "<td>"+response.data[key].tipependaftaran+"</th>\n" +
+                                    
+                                    "<td>"+response.data[key].tps+"</th>\n" +
+                                    "<td>"+response.data[key].tkamatematika+"</th>\n" +
+                                    "<td>"+response.data[key].tkafisika+"</th>\n" +
+                                    "<td>"+response.data[key].tkakimia+"</th>\n" +
+                                    "<td>"+response.data[key].tkabiologi+"</th>\n" +
+                                    "<td>"+response.data[key].passinggrade+"</th>\n" +
+                                    // "<td>"+response.data.raportgeografi+"</th>\n" +
+                                    // "<td>"+response.data.raportsosiologi+"</th>\n" +
+                                    // "<td>"+response.data.raportsejarah+"</th>\n" +
+                                    // "<td>"+response.data.raportekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                                })
+                                console.log("bener dah")
+                       tabmodiv.innerHTML = content
+                       hideAll7();
+                       document.getElementById('nodata').style.display = 'none';
+                       showOneForm('tabelhasil42')
+
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        hideAll7();
+                    }
+                        
+                },
+                    error: function(response) {
+                        console.error(response)
+                        console.log(response)
+                    }
+                })
+    })
+})
+
+$(document).ready(function(){
+    $("#getnilaimandiriips2").click(function() {
+        
+            tabmodiv=document.getElementById('bodyhasil52');
+                    var endpoint = 'http://178.128.104.74/penetapankelulusan/parameter/tipe/3';
+                    $.ajax({
+                    url: endpoint,
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        content="";
+                        console.log("jalan cu")
+                        
+                        if(response.data!=null){
+                            $.each(response.data, function(key, value){
+                            if (response.data[key].tkamatematika==null){
+                            content+=
+                                "<tr>" +
+                                                
+                                    "<td>"+response.data[key].fakultas+"</th>\n" +
+                                    "<td>"+response.data[key].tipependaftaran+"</th>\n" +
+                                    
+                                    "<td>"+response.data[key].tps+"</th>\n" +
+                                    "<td>"+response.data[key].tkageografi+"</th>\n" +
+                                    "<td>"+response.data[key].tkasosiologi+"</th>\n" +
+                                    "<td>"+response.data[key].tkasejarah+"</th>\n" +
+                                    "<td>"+response.data[key].tkaekonomi+"</th>\n" +
+                                    "<td>"+response.data[key].passinggrade+"</th>\n" +
+                                    // "<td>"+response.data.raportgeografi+"</th>\n" +
+                                    // "<td>"+response.data.raportsosiologi+"</th>\n" +
+                                    // "<td>"+response.data.raportsejarah+"</th>\n" +
+                                    // "<td>"+response.data.raportekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                                })
+                                console.log("bener dah")
+                       tabmodiv.innerHTML = content
+                       hideAll7();
+                       document.getElementById('nodata').style.display = 'none';
+                       showOneForm('tabelhasil52')
+
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        hideAll7();
+                    }
+                        
+                },
+                    error: function(response) {
+                        console.error(response)
+                        console.log(response)
+                    }
+                })
+    })
+})
+
+$(document).ready(function(){
+    $("#getnilais2s32").click(function() {
+        
+            tabmodiv=document.getElementById('bodyhasil62');
+                    var endpoint = 'http://178.128.104.74/penetapankelulusan/parameter/tipe/4';
+                    $.ajax({
+                    url: endpoint,
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        content="";
+                        console.log("jalan cu")
+                        
+                        if(response.data!=null){
+                            $.each(response.data, function(key, value){
+                            if (response.data[key].tkamatematika==null){
+                            content+=
+                                "<tr>" +
+                                                
+                                    "<td>"+response.data[key].fakultas+"</th>\n" +
+                                    "<td>"+response.data[key].tipependaftaran+"</th>\n" +
+                                    
+                                    "<td>"+response.data[key].indeksuniversitas+"</th>\n" +
+                                    "<td>"+response.data[key].ipk+"</th>\n" +
+                                    "<td>"+response.data[key].toefl_ibt+"</th>\n" +
+                                    "<td>"+response.data[key].toefl_cbt+"</th>\n" +
+                                    "<td>"+response.data[key].toefl_itp+"</th>\n" +
+                                    "<td>"+response.data[key].ielts+"</th>\n" +
+                                        "<td>"+response.data[key].tpabappenas+"</th>\n" +
+                                            "<td>"+response.data[key].passinggrade+"</th>\n" +
+                                    // "<td>"+response.data.raportgeografi+"</th>\n" +
+                                    // "<td>"+response.data.raportsosiologi+"</th>\n" +
+                                    // "<td>"+response.data.raportsejarah+"</th>\n" +
+                                    // "<td>"+response.data.raportekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                                })
+                                console.log("bener dah")
+                       tabmodiv.innerHTML = content
+                       hideAll7();
+                       document.getElementById('nodata').style.display = 'none';
+                       showOneForm('tabelhasil62')
+
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        hideAll7();
+                    }
+                        
+                },
+                    error: function(response) {
+                        console.error(response)
+                        console.log(response)
+                    }
+                })
+    })
+})
+
+$(document).ready(function(){
+    $("#getnilais32").click(function() {
+        
+            tabmodiv=document.getElementById('bodyhasil62');
+                    var endpoint = 'http://178.128.104.74/penetapankelulusan/parameter/tipe/5';
+                    $.ajax({
+                    url: endpoint,
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        content="";
+                        console.log("jalan cu")
+                        
+                        if(response.data!=null){
+                            $.each(response.data, function(key, value){
+                            if (response.data[key].tkamatematika==null){
+                            content+=
+                                "<tr>" +
+                                                
+                                    "<td>"+response.data[key].fakultas+"</th>\n" +
+                                    "<td>"+response.data[key].tipependaftaran+"</th>\n" +
+                                    
+                                    "<td>"+response.data[key].indeksuniversitas+"</th>\n" +
+                                    "<td>"+response.data[key].ipk+"</th>\n" +
+                                    "<td>"+response.data[key].toefl_ibt+"</th>\n" +
+                                    "<td>"+response.data[key].toefl_cbt+"</th>\n" +
+                                    "<td>"+response.data[key].toefl_itp+"</th>\n" +
+                                    "<td>"+response.data[key].ielts+"</th>\n" +
+                                        "<td>"+response.data[key].tpabappenas+"</th>\n" +
+                                            "<td>"+response.data[key].passinggrade+"</th>\n" +
+                                    // "<td>"+response.data.raportgeografi+"</th>\n" +
+                                    // "<td>"+response.data.raportsosiologi+"</th>\n" +
+                                    // "<td>"+response.data.raportsejarah+"</th>\n" +
+                                    // "<td>"+response.data.raportekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                                })
+                                console.log("bener dah")
+                       tabmodiv.innerHTML = content
+                       hideAll7();
+                       document.getElementById('nodata').style.display = 'none';
+                       showOneForm('tabelhasil62')
+
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        hideAll7();
+                    }
+                        
+                },
+                    error: function(response) {
+                        console.error(response)
+                        console.log(response)
+                    }
+                })
+    })
+})
+
+$(document).ready(function(){
+    $("#getnilaisnmipa").click(function() {
+        
+            tabmodiv=document.getElementById('bodyhasil2');
+                    var endpoint = 'http://178.128.104.74/penetapankelulusan/nilai/1';
+                    var tambahan = encodeURIComponent(document.getElementById('id_pendaftaran2').value)
+                    $.ajax({
+                    url: endpoint+'/'+tambahan,
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        content="";
+                        console.log(response)
+                        console.log("jalan cu")
+                        
+                        if (tambahan!=""){
+                            if(response.data!=null){
+                            if (response.data.raportmat!=null){
+                            content+=
+                                "<tr>" +
+                                    "<td>"+response.data.id_pendaftaran+"</th>\n" +
+                                    "<td>"+response.data.name+"</th>\n" +
+                                    "<td>"+response.data.fakultas1+"</th>\n" +
+                                    "<td>"+response.data.fakultas2+"</th>\n" +
+                                    "<td>"+response.data.tipependaftaran+"</th>\n" +
+                                    "<td>"+response.data.indekssekolah+"</th>\n" +
+                                    "<td>"+response.data.raportmat+"</th>\n" +
+                                    "<td>"+response.data.raportfisika+"</th>\n" +
+                                    "<td>"+response.data.raportkimia+"</th>\n" +
+                                    "<td>"+response.data.raportbiologi+"</th>\n" +
+                                    // "<td>"+response.data.raportgeografi+"</th>\n" +
+                                    // "<td>"+response.data.raportsosiologi+"</th>\n" +
+                                    // "<td>"+response.data.raportsejarah+"</th>\n" +
+                                    // "<td>"+response.data.raportekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                            
+                       tabmodiv.innerHTML = content
+                       hideAll5();
+                       document.getElementById('nodata').style.display = 'none';
+                       showOneForm('tabelhasil2')
+
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        hideAll5();
+                    }
+                        } else { 
+                        if(response!=null){
+                            $.each(response, function(key, value){
+                            if (response[key].raportmat!=null){
+                            content+=
+                                "<tr>" +
+                                    "<td>"+response[key].id_pendaftaran+"</th>\n" +
+                                    "<td>"+response[key].name+"</th>\n" +
+                                    "<td>"+response[key].fakultas1+"</th>\n" +
+                                    "<td>"+response[key].fakultas2+"</th>\n" +
+                                    "<td>"+response[key].tipependaftaran+"</th>\n" +
+                                    "<td>"+response[key].indekssekolah+"</th>\n" +
+                                    "<td>"+response[key].raportmat+"</th>\n" +
+                                    "<td>"+response[key].raportfisika+"</th>\n" +
+                                    "<td>"+response[key].raportkimia+"</th>\n" +
+                                    "<td>"+response[key].raportbiologi+"</th>\n" +
+                                    // "<td>"+response.data.raportgeografi+"</th>\n" +
+                                    // "<td>"+response.data.raportsosiologi+"</th>\n" +
+                                    // "<td>"+response.data.raportsejarah+"</th>\n" +
+                                    // "<td>"+response.data.raportekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                            })
+                       tabmodiv.innerHTML = content
+                       hideAll5();
+                       document.getElementById('nodata').style.display = 'none'; 
+                       showOneForm('tabelhasil2')    
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        hideAll5(); 
+                    }
+                    }
+                },
+                    error: function(response) {
+                        console.error(response)
+                        console.log(response)
+                    }
+                })
+    })
+})
+
+
+
+$(document).ready(function(){
+    $("#getnilaisnmips").click(function() {
+        
+            tabmodiv=document.getElementById('bodyhasil3');
+                    var endpoint = 'http://178.128.104.74/penetapankelulusan/nilai/1';
+                    var tambahan = encodeURIComponent(document.getElementById('id_pendaftaran3').value)
+                    $.ajax({
+                    url: endpoint+'/'+tambahan,
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        content="";
+                        console.log(response)
+                        console.log("jalan cu")
+                    
+                        if (tambahan!=""){
+                            if (response.data.raportmat==null){
+                            if (response.data.raportmat==null){
+                            content+=
+                                "<tr>" +
+                                    "<td>"+response.data.id_pendaftaran+"</th>\n" +
+                                    "<td>"+response.data.name+"</th>\n" +
+                                    "<td>"+response.data.fakultas1+"</th>\n" +
+                                    "<td>"+response.data.fakultas2+"</th>\n" +
+                                    "<td>"+response.data.tipependaftaran+"</th>\n" +
+                                    "<td>"+response.data.indekssekolah+"</th>\n" +
+                                    // "<td>"+response.raportmat+"</th>\n" +
+                                    // "<td>"+response.raportfisika+"</th>\n" +
+                                    // "<td>"+response.raportkimia+"</th>\n" +
+                                    // "<td>"+response.raportbiologi+"</th>\n" +
+                                    "<td>"+response.data.raportgeografi+"</th>\n" +
+                                    "<td>"+response.data.raportsosiologi+"</th>\n" +
+                                    "<td>"+response.data.raportsejarah+"</th>\n" +
+                                    "<td>"+response.data.raportekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                       tabmodiv.innerHTML = content
+                       hideAll5()
+                       document.getElementById('nodata').style.display = 'none';
+                       showOneForm('tabelhasil3')    
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        hideAll5()
+                    }
+         } else { 
+                        if(response!=null){
+                            $.each(response, function(key, value){
+                            if (response[key].raportmat==null){
+                            content+=
+                                "<tr>" +
+                                    "<td>"+response[key].id_pendaftaran+"</th>\n" +
+                                    "<td>"+response[key].name+"</th>\n" +
+                                    "<td>"+response[key].fakultas1+"</th>\n" +
+                                    "<td>"+response[key].fakultas2+"</th>\n" +
+                                    "<td>"+response[key].tipependaftaran+"</th>\n" +
+                                    "<td>"+response[key].indekssekolah+"</th>\n" +
+                                    // "<td>"+response[key].raportmat+"</th>\n" +
+                                    // "<td>"+response[key].raportfisika+"</th>\n" +
+                                    // "<td>"+response[key].raportkimia+"</th>\n" +
+                                    // "<td>"+response[key].raportbiologi+"</th>\n" +
+                                    "<td>"+response[key].raportgeografi+"</th>\n" +
+                                    "<td>"+response[key].raportsosiologi+"</th>\n" +
+                                    "<td>"+response[key].raportsejarah+"</th>\n" +
+                                    "<td>"+response[key].raportekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                            })
+                       tabmodiv.innerHTML = content
+                       hideAll5()
+                       document.getElementById('nodata').style.display = 'none'; 
+                       showOneForm('tabelhasil3')  
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        hideAll5()
+                    }
+                    }
+                },
+                    error: function(response) {
+                        console.error(response)
+                        console.log(response)
+                    }
+                })
+    })
+})
+
+$(document).ready(function(){
+    $("#getnilaisbmipa").click(function() {
+        
+            tabmodiv=document.getElementById('bodyhasil4');
+                    var endpoint = 'http://178.128.104.74/penetapankelulusan/nilai/2';
+                    var tambahan = encodeURIComponent(document.getElementById('id_pendaftaran4').value)
+                    $.ajax({
+                    url: endpoint+'/'+tambahan,
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        content="";
+                        console.log(response)
+                        console.log("jalan cu")
+                    
+                        if (tambahan!=""){
+                            if (response.data!=null){
+                            if (response.data.tkamatematika!=null){
+                            content+=
+                                "<tr>" +
+                                    "<td>"+response.data.id_pendaftaran+"</th>\n" +
+                                    "<td>"+response.data.name+"</th>\n" +
+                                    "<td>"+response.data.fakultas1+"</th>\n" +
+                                    "<td>"+response.data.fakultas2+"</th>\n" +
+                                    "<td>"+response.data.tipependaftaran+"</th>\n" +
+                                    "<td>"+response.data.tps+"</th>\n" +
+                                    "<td>"+response.data.tkamatematika+"</th>\n" +
+                                    "<td>"+response.data.tkafisika+"</th>\n" +
+                                    "<td>"+response.data.tkakimia+"</th>\n" +
+                                    "<td>"+response.data.tkabiologi+"</th>\n" +
+                                    // "<td>"+response.data.raportgeografi+"</th>\n" +
+                                    // "<td>"+response.data.raportsosiologi+"</th>\n" +
+                                    // "<td>"+response.data.raportsejarah+"</th>\n" +
+                                    // "<td>"+response.data.raportekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                       tabmodiv.innerHTML = content
+                       hideAll5()
+                       document.getElementById('nodata').style.display = 'none';
+                       showOneForm('tabelhasil4')   
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        hideAll5()
+                    }
+         } else { 
+                        if(response!=null){
+                            $.each(response, function(key, value){
+                            if (response[key].tkamatematika!=null){
+                            content+=
+                                "<tr>" +
+                                    "<td>"+response[key].id_pendaftaran+"</th>\n" +
+                                    "<td>"+response[key].name+"</th>\n" +
+                                    "<td>"+response[key].fakultas1+"</th>\n" +
+                                    "<td>"+response[key].fakultas2+"</th>\n" +
+                                    "<td>"+response[key].tipependaftaran+"</th>\n" +
+                                    "<td>"+response[key].tps+"</th>\n" +
+                                    "<td>"+response[key].tkamatematika+"</th>\n" +
+                                    "<td>"+response[key].tkafisika+"</th>\n" +
+                                    "<td>"+response[key].tkakimia+"</th>\n" +
+                                    "<td>"+response[key].tkabiologi+"</th>\n" +
+                                    // "<td>"+response[key].tkageografi+"</th>\n" +
+                                    // "<td>"+response[key].tkasosiologi+"</th>\n" +
+                                    // "<td>"+response[key].tkasejarah+"</th>\n" +
+                                    // "<td>"+response[key].tkatekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                            })
+                       tabmodiv.innerHTML = content
+                       hideAll5()
+                       document.getElementById('nodata').style.display = 'none'; 
+                       showOneForm('tabelhasil4')  
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        hideAll5()
+                    }
+                    }
+                },
+                    error: function(response) {
+                        console.error(response)
+                        console.log(response)
+                    }
+                })
+    })
+})
+
+$(document).ready(function(){
+    $("#getnilaimandiriipa").click(function() {
+        
+            tabmodiv=document.getElementById('bodyhasil4');
+                    var endpoint = 'http://178.128.104.74/penetapankelulusan/nilai/3';
+                    var tambahan = encodeURIComponent(document.getElementById('id_pendaftaran6').value)
+                    $.ajax({
+                    url: endpoint+'/'+tambahan,
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        content="";
+                        console.log(response)
+                        console.log("jalan cu")
+                    
+                        if (tambahan!=""){
+                            if (response.data!=null){
+                            if (response.data.tkamatematika!=null){
+                            content+=
+                                "<tr>" +
+                                    "<td>"+response.data.id_pendaftaran+"</th>\n" +
+                                    "<td>"+response.data.name+"</th>\n" +
+                                    "<td>"+response.data.fakultas1+"</th>\n" +
+                                    "<td>"+response.data.fakultas2+"</th>\n" +
+                                    "<td>"+response.data.tipependaftaran+"</th>\n" +
+                                    "<td>"+response.data.tps+"</th>\n" +
+                                    "<td>"+response.data.tkamatematika+"</th>\n" +
+                                    "<td>"+response.data.tkafisika+"</th>\n" +
+                                    "<td>"+response.data.tkakimia+"</th>\n" +
+                                    "<td>"+response.data.tkabiologi+"</th>\n" +
+                                    // "<td>"+response.data.raportgeografi+"</th>\n" +
+                                    // "<td>"+response.data.raportsosiologi+"</th>\n" +
+                                    // "<td>"+response.data.raportsejarah+"</th>\n" +
+                                    // "<td>"+response.data.raportekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                       tabmodiv.innerHTML = content
+                       hideAll5()
+                       document.getElementById('nodata').style.display = 'none';
+                       showOneForm('tabelhasil4')   
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        hideAll5()
+                    }
+         } else { 
+                        if(response!=null){
+                            $.each(response, function(key, value){
+                            if (response[key].tkamatematika!=null){
+                            content+=
+                                "<tr>" +
+                                    "<td>"+response[key].id_pendaftaran+"</th>\n" +
+                                    "<td>"+response[key].name+"</th>\n" +
+                                    "<td>"+response[key].fakultas1+"</th>\n" +
+                                    "<td>"+response[key].fakultas2+"</th>\n" +
+                                    "<td>"+response[key].tipependaftaran+"</th>\n" +
+                                    "<td>"+response[key].tps+"</th>\n" +
+                                    "<td>"+response[key].tkamatematika+"</th>\n" +
+                                    "<td>"+response[key].tkafisika+"</th>\n" +
+                                    "<td>"+response[key].tkakimia+"</th>\n" +
+                                    "<td>"+response[key].tkabiologi+"</th>\n" +
+                                    // "<td>"+response[key].tkageografi+"</th>\n" +
+                                    // "<td>"+response[key].tkasosiologi+"</th>\n" +
+                                    // "<td>"+response[key].tkasejarah+"</th>\n" +
+                                    // "<td>"+response[key].tkatekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                            })
+                       tabmodiv.innerHTML = content
+                       hideAll5()
+                       document.getElementById('nodata').style.display = 'none'; 
+                       showOneForm('tabelhasil4')  
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        hideAll5()
+                    }
+                    }
+                },
+                    error: function(response) {
+                        console.error(response)
+                        console.log(response)
+                    }
+                })
+    })
+})
+
+$(document).ready(function(){
+    $("#getnilaisbmips").click(function() {
+        
+            tabmodiv=document.getElementById('bodyhasil5');
+                    var endpoint = 'http://178.128.104.74/penetapankelulusan/nilai/2';
+                    var tambahan = encodeURIComponent(document.getElementById('id_pendaftaran5').value)
+                    $.ajax({
+                    url: endpoint+'/'+tambahan,
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        content="";
+                        console.log(response)
+                        console.log("jalan cu")
+                    
+                        if (tambahan!=""){
+                            if (response.data!=null){
+                            if (response.data.tkamatematika==null){
+                            content+=
+                                "<tr>" +
+                                    "<td>"+response.data.id_pendaftaran+"</th>\n" +
+                                    "<td>"+response.data.name+"</th>\n" +
+                                    "<td>"+response.data.fakultas1+"</th>\n" +
+                                    "<td>"+response.data.fakultas2+"</th>\n" +
+                                    "<td>"+response.data.tipependaftaran+"</th>\n" +
+                                    "<td>"+response.data.tps+"</th>\n" +
+                                    // "<td>"+response.data.tkamatematika+"</th>\n" +
+                                    // "<td>"+response.data.tkafisika+"</th>\n" +
+                                    // "<td>"+response.data.tkakimia+"</th>\n" +
+                                    // "<td>"+response.data.tkabiologi+"</th>\n" +
+                                    "<td>"+response.data.tkageografi+"</th>\n" +
+                                    "<td>"+response.data.tkasosiologi+"</th>\n" +
+                                    "<td>"+response.data.tkasejarah+"</th>\n" +
+                                    "<td>"+response.data.tkaekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                       tabmodiv.innerHTML = content
+                       hideAll5()
+                       document.getElementById('nodata').style.display = 'none';
+                       showOneForm('tabelhasil5')   
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        hideAll5()
+                    }
+         } else { 
+                        if(response!=null){
+                            $.each(response, function(key, value){
+                            if (response[key].tkamatematika==null){
+                            content+=
+                                "<tr>" +
+                                    "<td>"+response[key].id_pendaftaran+"</th>\n" +
+                                    "<td>"+response[key].name+"</th>\n" +
+                                    "<td>"+response[key].fakultas1+"</th>\n" +
+                                    "<td>"+response[key].fakultas2+"</th>\n" +
+                                    "<td>"+response[key].tipependaftaran+"</th>\n" +
+                                    "<td>"+response[key].tps+"</th>\n" +
+                                    // "<td>"+response[key].tkamat+"</th>\n" +
+                                    // "<td>"+response[key].tkafisika+"</th>\n" +
+                                    // "<td>"+response[key].tkakimia+"</th>\n" +
+                                    // "<td>"+response[key].tkabiologi+"</th>\n" +
+                                    "<td>"+response[key].tkageografi+"</th>\n" +
+                                    "<td>"+response[key].tkasosiologi+"</th>\n" +
+                                    "<td>"+response[key].tkasejarah+"</th>\n" +
+                                    "<td>"+response[key].tkatekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                            })
+                       tabmodiv.innerHTML = content
+                       hideAll5()
+                       document.getElementById('nodata').style.display = 'none'; 
+                       showOneForm('tabelhasil5')  
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        hideAll5()
+                    }
+                    }
+                },
+                    error: function(response) {
+                        console.error(response)
+                        console.log(response)
+                    }
+                })
+    })
+})
+
+
+$(document).ready(function(){
+    $("#getnilaimandiriips").click(function() {
+        
+            tabmodiv=document.getElementById('bodyhasil5');
+                    var endpoint = 'http://178.128.104.74/penetapankelulusan/nilai/3';
+                    var tambahan = encodeURIComponent(document.getElementById('id_pendaftaran7').value)
+                    $.ajax({
+                    url: endpoint+'/'+tambahan,
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        content="";
+                        console.log(response)
+                        console.log("jalan cu")
+                    
+                        if (tambahan!=""){
+                            if (response.data!=null){
+                            if (response.data.tkamatematika==null){
+                            content+=
+                                "<tr>" +
+                                    "<td>"+response.data.id_pendaftaran+"</th>\n" +
+                                    "<td>"+response.data.name+"</th>\n" +
+                                    "<td>"+response.data.fakultas1+"</th>\n" +
+                                    "<td>"+response.data.fakultas2+"</th>\n" +
+                                    "<td>"+response.data.tipependaftaran+"</th>\n" +
+                                    "<td>"+response.data.tps+"</th>\n" +
+                                    // "<td>"+response.data.tkamatematika+"</th>\n" +
+                                    // "<td>"+response.data.tkafisika+"</th>\n" +
+                                    // "<td>"+response.data.tkakimia+"</th>\n" +
+                                    // "<td>"+response.data.tkabiologi+"</th>\n" +
+                                    "<td>"+response.data.tkageografi+"</th>\n" +
+                                    "<td>"+response.data.tkasosiologi+"</th>\n" +
+                                    "<td>"+response.data.tkasejarah+"</th>\n" +
+                                    "<td>"+response.data.tkaekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                       tabmodiv.innerHTML = content
+                       hideAll5()
+                       document.getElementById('nodata').style.display = 'none';
+                       showOneForm('tabelhasil5')   
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        hideAll5()
+                    }
+         } else { 
+                        if(response!=null){
+                            $.each(response, function(key, value){
+                            if (response[key].tkamatematika==null){
+                            content+=
+                                "<tr>" +
+                                    "<td>"+response[key].id_pendaftaran+"</th>\n" +
+                                    "<td>"+response[key].name+"</th>\n" +
+                                    "<td>"+response[key].fakultas1+"</th>\n" +
+                                    "<td>"+response[key].fakultas2+"</th>\n" +
+                                    "<td>"+response[key].tipependaftaran+"</th>\n" +
+                                    "<td>"+response[key].tps+"</th>\n" +
+                                    // "<td>"+response[key].tkamat+"</th>\n" +
+                                    // "<td>"+response[key].tkafisika+"</th>\n" +
+                                    // "<td>"+response[key].tkakimia+"</th>\n" +
+                                    // "<td>"+response[key].tkabiologi+"</th>\n" +
+                                    "<td>"+response[key].tkageografi+"</th>\n" +
+                                    "<td>"+response[key].tkasosiologi+"</th>\n" +
+                                    "<td>"+response[key].tkasejarah+"</th>\n" +
+                                    "<td>"+response[key].tkatekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                            })
+                       tabmodiv.innerHTML = content
+                       hideAll5()
+                       document.getElementById('nodata').style.display = 'none'; 
+                       showOneForm('tabelhasil5')  
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        hideAll5()
+                    }
+                    }
+                },
+                    error: function(response) {
+                        console.error(response)
+                        console.log(response)
+                    }
+                })
+    })
+})
+
+$(document).ready(function(){
+    $("#getnilais2s3").click(function() {
+            tabmodiv=document.getElementById('bodyhasil6');
+                    var endpoint = 'http://178.128.104.74/penetapankelulusan/nilai/4';
+                    var tambahan = encodeURIComponent(document.getElementById('id_pendaftaran8').value)
+                    $.ajax({
+                    url: endpoint+'/'+tambahan,
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        content="";
+                        console.log(response)
+                        console.log("jalan cu")
+                    
+                        if (tambahan!=""){
+                            if(response.data!=null){
+                            content+=
+                                "<tr>" +
+                                    "<td>"+response.data.id_pendaftaran+"</th>\n" +
+                                    "<td>"+response.data.name+"</th>\n" +
+                                    "<td>"+response.data.fakultas1+"</th>\n" +
+                                    "<td>"+response.data.fakultas2+"</th>\n" +
+                                    "<td>"+response.data.tipependaftaran+"</th>\n" +
+                                    "<td>"+response.data.indeksuniversitas+"</th>\n" +
+                                    "<td>"+response.data.ipk+"</th>\n" +
+                                    "<td>"+response.data.toefl_ibt+"</th>\n" +
+                                    "<td>"+response.data.toefl_cbt+"</th>\n" +
+                                    "<td>"+response.data.toefl_itp+"</th>\n" +
+                                    "<td>"+response.data.ielts+"</th>\n" +
+                                    "<td>"+response.data.tpabappenas+"</th>\n" +       
+                                "</tr>";
+                                    
+                                tabmodiv.innerHTML = content
+                                hideAll5()
+                                document.getElementById('nodata').style.display = 'none';
+                                showOneForm('tabelhasil6')
+                              } else {
+                                document.getElementById('nodata').style.display = 'block';
+                                hideAll5()
+                              }
+                    
+                        } else {
+                            $.each(response, function(key, value){
+                            if (response[key].tkamatematika==null){
+                            content+=
+                                "<tr>" +
+                                    "<td>"+response[key].id_pendaftaran+"</th>\n" +
+                                    "<td>"+response[key].name+"</th>\n" +
+                                    "<td>"+response[key].fakultas1+"</th>\n" +
+                                    "<td>"+response[key].fakultas2+"</th>\n" +
+                                    "<td>"+response[key].tipependaftaran+"</th>\n" +
+                                    "<td>"+response[key].indeksuniversitas+"</th>\n" +
+                                    "<td>"+response[key].ipk+"</th>\n" +
+                                    "<td>"+response[key].toefl_ibt+"</th>\n" +
+                                    "<td>"+response[key].toefl_cbt+"</th>\n" +
+                                    "<td>"+response[key].toefl_itp+"</th>\n" +
+                                        "<td>"+response[key].ielts+"</th>\n" +
+                                            "<td>"+response[key].tpabappenas+"</th>\n" +
+                                    // "<td>"+response[key].tkageografi+"</th>\n" +
+                                    // "<td>"+response[key].tkasosiologi+"</th>\n" +
+                                    // "<td>"+response[key].tkasejarah+"</th>\n" +
+                                    // "<td>"+response[key].tkatekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                            })
+                       tabmodiv.innerHTML = content
+                       hideAll5()
+                       document.getElementById('nodata').style.display = 'none'; 
+                       showOneForm('tabelhasil6')  
+                    } 
+                },
+                    error: function(response) {
+                        console.error(response)
+                        console.log(response)
+                    }
+                })
+    })
+})
+
+$(document).ready(function(){
+    $("#getnilais3").click(function() {
+            tabmodiv=document.getElementById('bodyhasil6');
+                    var endpoint = 'http://178.128.104.74/penetapankelulusan/nilai/5';
+                    var tambahan = encodeURIComponent(document.getElementById('id_pendaftaran9').value)
+                    $.ajax({
+                    url: endpoint+'/'+tambahan,
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        content="";
+                        console.log(response)
+                        console.log("jalan cu")
+                    
+                        if (tambahan!=""){
+                            if(response.data!=null){
+                            content+=
+                                "<tr>" +
+                                    "<td>"+response.data.id_pendaftaran+"</th>\n" +
+                                    "<td>"+response.data.name+"</th>\n" +
+                                    "<td>"+response.data.fakultas1+"</th>\n" +
+                                    "<td>"+response.data.fakultas2+"</th>\n" +
+                                    "<td>"+response.data.tipependaftaran+"</th>\n" +
+                                    "<td>"+response.data.indeksuniversitas+"</th>\n" +
+                                    "<td>"+response.data.ipk+"</th>\n" +
+                                    "<td>"+response.data.toefl_ibt+"</th>\n" +
+                                    "<td>"+response.data.toefl_cbt+"</th>\n" +
+                                    "<td>"+response.data.toefl_itp+"</th>\n" +
+                                    "<td>"+response.data.ielts+"</th>\n" +
+                                    "<td>"+response.data.tpabappenas+"</th>\n" +       
+                                "</tr>";
+                                    
+                                tabmodiv.innerHTML = content
+                                hideAll5()
+                                document.getElementById('nodata').style.display = 'none';
+                                showOneForm('tabelhasil6')
+                              } else {
+                                document.getElementById('nodata').style.display = 'block';
+                                hideAll5()
+                              }
+                    
+                        } else {
+                            $.each(response, function(key, value){
+                            if (response[key].tkamatematika==null){
+                            content+=
+                                "<tr>" +
+                                    "<td>"+response[key].id_pendaftaran+"</th>\n" +
+                                    "<td>"+response[key].name+"</th>\n" +
+                                    "<td>"+response[key].fakultas1+"</th>\n" +
+                                    "<td>"+response[key].fakultas2+"</th>\n" +
+                                    "<td>"+response[key].tipependaftaran+"</th>\n" +
+                                    "<td>"+response[key].indeksuniversitas+"</th>\n" +
+                                    "<td>"+response[key].ipk+"</th>\n" +
+                                    "<td>"+response[key].toefl_ibt+"</th>\n" +
+                                    "<td>"+response[key].toefl_cbt+"</th>\n" +
+                                    "<td>"+response[key].toefl_itp+"</th>\n" +
+                                        "<td>"+response[key].ielts+"</th>\n" +
+                                            "<td>"+response[key].tpabappenas+"</th>\n" +
+                                    // "<td>"+response[key].tkageografi+"</th>\n" +
+                                    // "<td>"+response[key].tkasosiologi+"</th>\n" +
+                                    // "<td>"+response[key].tkasejarah+"</th>\n" +
+                                    // "<td>"+response[key].tkatekonomi+"</th>\n" +         
+                                "</tr>";
+                                    }
+                            })
+                       tabmodiv.innerHTML = content
+                       hideAll5()
+                       document.getElementById('nodata').style.display = 'none'; 
+                       showOneForm('tabelhasil6')  
+                    } 
+                },
+                    error: function(response) {
+                        console.error(response)
+                        console.log(response)
+                    }
+                })
+    })
+})
+
+$(document).ready(function(){
+    $("#cariData").click(function() {
+        
+            tabmodiv=document.getElementById('bodyhasil');
+                document.getElementById('tabelhasil').style.display = 'block';
+                    var endpoint = 'http://178.128.104.74/penetapankelulusan/hasilkelulusan/id';
+                    $.ajax({
+                    url: endpoint+'/'+encodeURIComponent(document.getElementById('id_pendaftaran').value),
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        content="";
+                        console.log(response)
+                        if(response.data!=null){
+                            content+=
+                                "<tr>" +
+                                    "<td>"+response.data.id_pendaftaran+"</th>\n" +
+                                    "<td>"+response.data.name+"</th>\n" +
+                                    "<td>"+response.data.fakultas+"</th>\n" +
+                                    "<td>"+response.data.tipependaftaran+"</th>\n" +
+                                "</tr>";
+                       tabmodiv.innerHTML = content
+                       document.getElementById('nodata').style.display = 'none';
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        document.getElementById('tabelhasil').style.display = 'none';
+                    }},
+                    error: function(response) {
+                        console.error(response);
+                    }
+                })
+    })
+})
+
+$(document).ready(function(){
+    $("#cariData2").click(function() {
+        
+            tabmodiv=document.getElementById('bodyhasil');
+                document.getElementById('tabelhasil').style.display = 'block';
+                    var endpoint = 'http://178.128.104.74/penetapankelulusan/hasilkelulusan/tipe';
+                    $.ajax({
+                    url: endpoint+'/'+encodeURIComponent(document.getElementById('tipependaftaran').value),
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        content="";
+                        console.log(response)
+                        if(response.data.length!=0){
+                            $.each(response.data, function(key, value){
+                            content+=
+                                "<tr>" +
+                                    "<td>"+value.id_pendaftaran+"</th>\n" +
+                                    "<td>"+value.name+"</th>\n" +
+                                    "<td>"+value.fakultas+"</th>\n" +
+                                    "<td>"+value.tipependaftaran+"</th>\n" +
+                                "</tr>";
+                            })
+                       tabmodiv.innerHTML = content
+                       document.getElementById('nodata').style.display = 'none';
+                    } else {
+                        document.getElementById('nodata').style.display = 'block';
+                        document.getElementById('tabelhasil').style.display = 'none';
+                    }},
+                    error: function(response) {
+                        console.error(response);
+                    }
+                })
+    })
+})
+
+$(document).ready(function(){
+    $("#cariData3").click(function() {
+        
+            tabmodiv=document.getElementById('bodyhasil');
+                document.getElementById('tabelhasil').style.display = 'block';
+                    var endpoint = 'http://178.128.104.74/penetapankelulusan/hasilkelulusan/fakultas';
+                    $.ajax({
+                    url: endpoint+'/'+encodeURIComponent(document.getElementById('fakultas').value),
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        content="";
+                        console.log(response)
+                        if(response.data.length!=0){
+                            $.each(response.data, function(key, value){
+                            content+=
+                                "<tr>" +
+                                    "<td>"+value.id_pendaftaran+"</th>\n" +
+                                    "<td>"+value.name+"</th>\n" +
+                                    "<td>"+value.fakultas+"</th>\n" +
+                                    "<td>"+value.tipependaftaran+"</th>\n" +
+                                "</tr>";
+                            })
+                       tabmodiv.innerHTML = content
+                       document.getElementById('nodata').style.display = 'none';
+                    } else {
+                         document.getElementById('nodata').style.display = 'block';
+                         document.getElementById('tabelhasil').style.display = 'none';
+                    }},
+                    error: function(response) {
+                        console.error(response);
+                    }
+                })
+    })
+})
+
+$(document).ready(function(){
+    $("#semua").click(function() {
+        
+        tabmodiv=document.getElementById('bodyhasil');
+            document.getElementById('tabelhasil').style.display = 'block';
+                var endpoint = 'http://178.128.104.74/penetapankelulusan/hasilkelulusan';
+                $.ajax({
+                url: endpoint,
+                type:'GET',
+                dataType: 'json',
+                
+                success: function(response) {
+                    content="";
+                    console.log(response)
+                        $.each(response, function(key, value){
+                        content+=
+                            "<tr>" +
+                                "<td>"+value.id_pendaftaran+"</th>\n" +
+                                "<td>"+value.name+"</th>\n" +
+                                "<td>"+value.fakultas+"</th>\n" +
+                                "<td>"+value.tipependaftaran+"</th>\n" +
+                            "</tr>";
+                        })
+                   tabmodiv.innerHTML = content
+                   document.getElementById('nodata').style.display = 'none';
+                },
+                error: function(response) {
+                    console.error(response);
+                }
+            })
+})
+})
+
+
+
+var listFilter = ["fid","ftipe","ffakultas","fsemua"]
+var listFilter2 = ["tombolnilaisnmipa","tombolnilaisnmips","tombolnilaisbmipa","tombolnilaisbmips","tombolnilaimandiriipa","tombolnilaimandiriips","tombolnilais2s3","tombolnilais3"]
+var listFilter3 = ["tabelhasil2","tabelhasil3","tabelhasil4","tabelhasil5","tabelhasil6"]
+var listFilter4 = ["tombolnilaisnmipa2","tombolnilaisnmips2","tombolnilaisbmipa2","tombolnilaisbmips2","tombolnilaimandiriipa2","tombolnilaimandiriips2","tombolnilais2s32","tombolnilais32"]
+var listFilter5 = ["tabelhasil22","tabelhasil32","tabelhasil42","tabelhasil52","tabelhasil62"]       
+
+    function hideAll3(){
+    for(i=0;i<listFilter.length;i++){
+                    document.getElementById(listFilter[i]).style.display='none'
+                }
+}
+
+    function hideAll4(){
+        for(i=0;i<listFilter2.length;i++){
+                    document.getElementById(listFilter2[i]).style.display='none'
+                }    
+    }
+
+    function hideAll5(){
+        for(i=0;i<listFilter3.length;i++){
+                    document.getElementById(listFilter3[i]).style.display='none'
+                }   
+    }
+
+    function hideAll6(){
+        for(i=0;i<listFilter4.length;i++){
+                    document.getElementById(listFilter4[i]).style.display='none'
+                }   
+    }
+
+    function hideAll7(){
+        for(i=0;i<listFilter5.length;i++){
+                    document.getElementById(listFilter5[i]).style.display='none'
+                }   
+    }
+
+function show1(){
+        showOneFilter("postnilai")
+        hideOneFilter('getnilai')
+}
+
+function show2(){
+        showOneFilter("getnilai")
+        hideOneFilter('postnilai')
+    }
+
+    function show11(){
+        showOneFilter("postnilai2")
+        hideOneFilter('getnilai2')
+}
+
+function show12(){
+        showOneFilter("getnilai2")
+        hideOneFilter('postnilai2')
+    }
+
+function showOneFilter(data){
+    document.getElementById(data).style.display='block'
+}
+
+function hideOneFilter(data){
+    document.getElementById(data).style.display='none'
+}
+
+function showTable(){
+    document.getElementById("tabelhasil").style.display='block'
+}
+
+
+function showFilter(){
+    if(document.getElementById('filter').value==1){
+        hideAll3();
+        showOneFilter('fid');
+    } else if(document.getElementById('filter').value==2){
+        hideAll3();
+        showOneFilter('ftipe');
+    } else if(document.getElementById('filter').value==3){
+        hideAll3();
+        showOneFilter('ffakultas');
+    } else if(document.getElementById('filter').value==4){
+        hideAll3();
+        showOneFilter('fsemua');
+    } else {
+        hideAll3();
+    }
+}
+
+function showFilter2(){
+    if(document.getElementById('getnilaibos').value==1){
+        if(document.getElementById('getnilaitipe').value==1){
+            showOneForm('selectFilter')
+            showOneForm('getnilaitipe')
+            hideAll4();
+            showOneFilter('tombolnilaisnmipa');
+        }
+        else if(document.getElementById('getnilaitipe').value==2){
+            hideAll4();
+            showOneFilter('tombolnilaisnmips');
+        } else {
+            hideAll4()
+        }
+
+    } else if(document.getElementById('getnilaibos').value==2){
+        showOneForm('selectFilter')
+            showOneForm('getnilaitipe')
+        if(document.getElementById('getnilaitipe').value==1){
+            hideAll4();
+            showOneFilter('tombolnilaisbmipa');
+        }
+        else if(document.getElementById('getnilaitipe').value==2){
+            hideAll4();
+            showOneFilter('tombolnilaisbmips');
+        } else {
+            hideAll4()
+        }
+
+
+    } else if(document.getElementById('getnilaibos').value==3){
+        showOneForm('selectFilter')
+            showOneForm('getnilaitipe')
+        if(document.getElementById('getnilaitipe').value==1){
+            hideAll4();
+            showOneFilter('tombolnilaimandiriipa');
+        }
+        else if(document.getElementById('getnilaitipe').value==2){
+            hideAll4();
+            showOneFilter('tombolnilaimandiriips');
+        } else {
+            hideAll4()
+        }
+
+
+    } else if(document.getElementById('getnilaibos').value==4){
+        
+        hideAll4();
+        showOneFilter('tombolnilais2s3');
+        hideOneFilter('getnilaitipe')  
+        hideOneFilter('selectFilter')
+    } else if(document.getElementById('getnilaibos').value==5){
+        
+        hideAll4();
+        showOneFilter('tombolnilais3');
+        hideOneFilter('getnilaitipe')  
+        hideOneFilter('selectFilter')
+    } else {
+        hideAll4();
+    }
+}
+
+
+function showFilter3(){
+    if(document.getElementById('getnilaibos2').value==1){
+        if(document.getElementById('getnilaitipe2').value==1){
+            showOneForm('selectFilter2')
+            showOneForm('getnilaitipe2')
+            hideAll6();
+            showOneFilter('tombolnilaisnmipa2');
+        }
+        else if(document.getElementById('getnilaitipe2').value==2){
+            hideAll6();
+            showOneFilter('tombolnilaisnmips2');
+        } else {
+            hideAll6()
+        }
+
+    } else if(document.getElementById('getnilaibos2').value==2){
+        showOneForm('selectFilter2')
+            showOneForm('getnilaitipe2')
+        if(document.getElementById('getnilaitipe2').value==1){
+            hideAll6();
+            showOneFilter('tombolnilaisbmipa2');
+        }
+        else if(document.getElementById('getnilaitipe2').value==2){
+            hideAll6();
+            showOneFilter('tombolnilaisbmips2');
+        } else {
+            hideAll6()
+        }
+    } else if(document.getElementById('getnilaibos2').value==3){
+        showOneForm('selectFilter2')
+            showOneForm('getnilaitipe2')
+        if(document.getElementById('getnilaitipe2').value==1){
+            hideAll6();
+            showOneFilter('tombolnilaimandiriipa2');
+        }
+        else if(document.getElementById('getnilaitipe2').value==2){
+            hideAll6();
+            showOneFilter('tombolnilaimandiriips2');
+        } else {
+            hideAll6()
+        }
+    } else if(document.getElementById('getnilaibos2').value==4){
+        
+        hideAll6();
+        showOneFilter('tombolnilais2s32');
+        hideOneFilter('getnilaitipe2')  
+        hideOneFilter('selectFilter2')
+    } else if(document.getElementById('getnilaibos2').value==5){
+        
+        hideAll6();
+        showOneFilter('tombolnilais32');
+        hideOneFilter('getnilaitipe2')  
+        hideOneFilter('selectFilter2')
+    } else {
+        hideAll6();
+    }
+}
+
+
+var listForm = ["formSNMIPA","formSNMIPS","formSBMIPA","formSBMIPS","formS2S3","formMandiriIPA","formMandiriIPS","formS3"]
+var listForm2 = ["formSNMIPA2","formSNMIPS2","formSBMIPA2","formSBMIPS2","formS2S32","formMandiriIPA2","formMandiriIPS2","formS32"]
+
+function hideAll(){
+    for(i=0;i<listForm.length;i++){
+                    document.getElementById(listForm[i]).style.display='none'
+                    document.getElementById(listForm2[i]).style.display='none'
+                }
+}
+function showOneForm(data){
+    document.getElementById(data).style.display='block'
+}
+
+    function showForm(){
+        if(document.getElementById('tipePendaftaran').value==1){
+            showOneForm('selectFakultas')
+            showOneForm('tipeFakultas')
+            if(document.getElementById('tipeFakultas').value==1){
+                hideAll();
+                showOneForm('formSNMIPA');
+        } else if(document.getElementById('tipeFakultas').value==2){
+            hideAll();
+            showOneForm('formSNMIPS');
+        } else{
+            hideAll();
+        }
+    } else if(document.getElementById('tipePendaftaran').value==2){
+        showOneForm('selectFakultas'); 
+        showOneForm('tipeFakultas')  
+        if(document.getElementById('tipeFakultas').value==1){
+                hideAll();
+                showOneForm('formSBMIPA');
+        } else if(document.getElementById('tipeFakultas').value==2){
+            hideAll();
+            showOneForm('formSBMIPS');
+        } else {
+            hideAll();
+        }
+    } else if(document.getElementById('tipePendaftaran').value==3){
+        showOneForm('selectFakultas'); 
+        showOneForm('tipeFakultas')  
+        if(document.getElementById('tipeFakultas').value==1){
+                hideAll();
+                showOneForm('formMandiriIPA');
+        } else if(document.getElementById('tipeFakultas').value==2){
+            hideAll();
+            showOneForm('formMandiriIPS');
+        } else {
+            hideAll();
+        }
+    } else if(document.getElementById('tipePendaftaran').value==4){
+                hideAll();
+                showOneForm('formS2S3');
+                hideOneFilter('selectFakultas')
+                hideOneFilter('tipeFakultas')
+        }
+    else if(document.getElementById('tipePendaftaran').value==5){
+                hideAll();
+                showOneForm('formS3');
+                hideOneFilter('selectFakultas')
+                hideOneFilter('tipeFakultas')
+        } else {
+            hideAll();
+        }
+}
+
+function showForm2(){
+        if(document.getElementById('tipePendaftaran2').value==1){
+            showOneForm('selectFakultas2')
+            showOneForm('tipeFakultas2')
+            if(document.getElementById('tipeFakultas2').value==1){
+                hideAll();
+                showOneForm('formSNMIPA2');
+        } else if(document.getElementById('tipeFakultas2').value==2){
+            hideAll();
+            showOneForm('formSNMIPS2');
+        } else{
+            hideAll();
+        }
+    } else if(document.getElementById('tipePendaftaran2').value==2){
+        showOneForm('selectFakultas2')
+            showOneForm('tipeFakultas2')    
+        if(document.getElementById('tipeFakultas2').value==1){
+                hideAll();
+                showOneForm('formSBMIPA2');
+        } else if(document.getElementById('tipeFakultas2').value==2){
+            hideAll();
+            showOneForm('formSBMIPS2');
+        } else {
+            hideAll();
+        }
+    } else if(document.getElementById('tipePendaftaran2').value==3){
+        showOneForm('selectFakultas2')
+            showOneForm('tipeFakultas2')    
+        if(document.getElementById('tipeFakultas2').value==1){
+                hideAll();
+                showOneForm('formMandiriIPA2');
+        } else if(document.getElementById('tipeFakultas2').value==2){
+            hideAll();
+            showOneForm('formMandiriIPS2');
+        } else {
+            hideAll();
+        }
+    } else if(document.getElementById('tipePendaftaran2').value==4){
+                hideAll();
+                showOneForm('formS2S32');
+                hideOneFilter('selectFakultas2')
+            hideOneFilter('tipeFakultas2')
+        } else if(document.getElementById('tipePendaftaran2').value==5){
+                hideAll();
+                showOneForm('formS32');
+                hideOneFilter('selectFakultas2')
+            hideOneFilter('tipeFakultas2')
+        } else {
+            hideAll();
+        }
+}
+
+$(document).ready(function(){
+    $("#generate").click(function() {
+        if(document.getElementById("tipeGenerate").value==1){
+            var endpoint = 'http://178.128.104.74/penetapankelulusan/penilaiankelulusan/1';
+                    $.ajax({
+                    url: endpoint,
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        console.log(response)
+                        console.log("sukses generate nilai 1")
+                        alert("Generate nilai SNMPTN sukses")
+                },
+                    error: function(response) {
+                        console.error(response)
+                        console.log(response)
+                        alert("Generate nilai SNMPTN gagal")
+                    }
+                })
+        } else if(document.getElementById("tipeGenerate").value==2){
+            var endpoint = 'http://178.128.104.74/penetapankelulusan/penilaiankelulusan/2';
+                    $.ajax({
+                    url: endpoint,
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        console.log(response)
+                        console.log("sukses generate nilai 1")
+                        alert("Generate nilai SBMPTN sukses")
+                },
+                    error: function(response) {
+                        console.error(response)
+                        console.log(response)
+                        alert("Generate nilai SBMPTN gagal")
+                    }
+                })
+        }  else if(document.getElementById("tipeGenerate").value==3){
+            var endpoint = 'http://178.128.104.74/penetapankelulusan/penilaiankelulusan/3';
+                    $.ajax({
+                    url: endpoint,
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        console.log(response)
+                        console.log("sukses generate nilai 1")
+                        alert("Generate nilai mandiri sukses")
+                },
+                    error: function(response) {
+                        console.error(response)
+                        console.log(response)
+                        alert("Generate nilai mandiri gagal")
+                     }
+                })
+        } else if(document.getElementById("tipeGenerate").value==4){
+            var endpoint = 'http://178.128.104.74/penetapankelulusan/penilaiankelulusan/4';
+                    $.ajax({
+                    url: endpoint,
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        console.log(response)
+                        console.log("sukses generate nilai 1")
+                        alert("Generate nilai S2 sukses")
+                },
+                    error: function(response) {
+                        console.error(response)
+                        console.log(response)
+                        alert("Generate nilai S2 gagal")
+                     }
+                })
+        } else if(document.getElementById("tipeGenerate").value==5){
+            var endpoint = 'http://178.128.104.74/penetapankelulusan/penilaiankelulusan/5';
+                    $.ajax({
+                    url: endpoint,
+                    type:'GET',
+                    dataType: 'json',
+                    
+                    success: function(response) {
+                        console.log(response)
+                        console.log("sukses generate nilai 1")
+                        alert("Generate nilai S3 sukses")
+                },
+                    error: function(response) {
+                        console.error(response)
+                        console.log(response)
+                        alert("Generate nilai S3 gagal")
+                     }
+                })
+        }
+
+
+                    
+    })
+})
+
+// $(document).ready(function(){
+//     $("#pdf").click(function() {
+
+//             // var tambahan = encodeURIComponent(document.getElementById('tipePDF').value)
+//             var endpoint = 'http://178.128.104.74/penetapankelulusan/pdf/1'
+//             console.log(endpoint)
+            
+//                     $.ajax({
+//                     url: endpoint,
+//                     type:'GET',
+
+
+                    
+//                     success: function(response) {
+//                         console.log(response)
+//                         console.log("sukses generate pdf")
+//                         alert("Generate nilai PDF sukses")
+//                 },
+//                     error: function(response) {
+//                         console.error(response)
+//                         console.log(response)
+//                         alert("Generate nilai pdf gagal")
+//                     }
+//                 })
+                    
+//     })
+// })
+
+</script>
+
+<style>
+
+h1 {
+        position: absolute;
+        font-weight: 700;
+        font-size: 174px;
+        color: #fff;
+        opacity: 0.5;
+        right: 105px;
+        top: 100px;
+        top: 30px;
+        z-index: 9; } 
+h2{
+    font-family : 'Nunito Black';
+    font-weight :600;  
+    text-align: center;
+}
+
+p{
+    font-family:'Nunito Light';
+}
+
+body {
+    font-family: 'Nunito';
+    color: #222;
+    background: #96bbff;
+}
+
+.navbar-nav a{
+    color:#fff;
+}
+
+.navbar-nav .active a, .nav a:focus {
+    color:#1f60d8;
+}
+
+.navbar-nav a::before, .navbar-nav a::after {
+	display: inline-block;
+	opacity: 0;
+	transition: transform 0.3s, opacity 0.2s;
+}
+
+.navbar-nav a::before {
+	margin-right: 10px;
+	content: '[';
+	transform: translateX(20px);
+}
+.navbar-nav a::after {
+	margin-left: 10px;
+	content: ']';
+	transform: translateX(-20px);
+}
+.navbar-nav a:hover, .navbar-nav a:hover::before, .navbar-nav a:hover::after{
+	color:#1f60d8 ;
+	background-color: transparent;	
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+h1{
+    text-align: center;
+}
+p{
+    text-align: center;
+}
+
+.jumbotron{
+    padding:auto;
+    width: auto;
+    margin: auto;
+    padding: 2em;
+    background: #fafafa;
+    border: 1px solid #ebebeb;
+    border-radius:10px;
+    box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px;
+}
+
+.radio-inline{
+    margin-top:15px;
+}
+#postnilai{
+    display:none;
+    padding:auto;
+    margin: auto;
+}
+
+#formSNMIPA{
+    display:none;
+    padding:auto;
+    margin: auto;
+}
+
+/* #tabelhasil{
+    margin: auto;
+    width: auto;
+    overflow: hidden;
+    background: #fff;
+    color: #fff;
+    border: 1px solid #167f92;
+
+}
+
+#tabelhasil tr:nth-child(even){
+    background-color: #f8f6ff;
+}
+
+#tabelhasil th {
+    font-family: Nunito;
+    font-size : 14px;
+    line-height : 1.4;
+    background-color: #5892ff;
+}
+
+#tabelhasil td{
+    font-size: 10px;
+    color: #808080;
+    line-height: 1.4;
+}
+
+#pilss-tab{
+    color:#1f60d8 ;
+} */
+
+
+</style>

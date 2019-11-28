@@ -1,0 +1,948 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "DEKTM API",
+    "description" : "website menampilkan hasil penerimaan SBMPTN yang dikelola oleh DEKTM",
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "https://virtserver.swaggerhub.com/nadyaanastasias/DEKTM/1.0.0",
+    "description" : "SwaggerHub API Auto Mocking"
+  }, {
+    "url" : "http://178.128.104.74/penetapankelulusan/",
+    "description" : "Server DEKTM"
+  } ],
+  "tags" : [ {
+    "name" : "admin",
+    "description" : "all operations that can be done by admin"
+  }, {
+    "name" : "user",
+    "description" : "all operations that can be done by user"
+  } ],
+  "paths" : {
+    "/pdf" : {
+      "get" : {
+        "tags" : [ "admin" ],
+        "summary" : "Generate Surat Keputusan pdf secara keseluruhan",
+        "description" : "Generate Surat Keputusan pdf secara keseluruhan",
+        "operationId" : "GenerateSKpdf",
+        "responses" : {
+          "200" : {
+            "description" : "Successfull generate a pdf file",
+            "content" : {
+              "application/pdf" : {
+                "schema" : {
+                  "type" : "file"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request Parameter"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/pdf/{tipe}" : {
+      "get" : {
+        "tags" : [ "admin" ],
+        "summary" : "Generate Surat Keputusan pdf berdasarkan input tip pendaftaran",
+        "description" : "Generate Surat Keputusan pdf berdasarkan input tip pendaftaran",
+        "operationId" : "GenerateSKTipepdf",
+        "parameters" : [ {
+          "name" : "tipe",
+          "in" : "path",
+          "description" : "tipe pendaftaran yang ingin digenerate SKnya",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfull generate a pdf file",
+            "content" : {
+              "application/pdf" : {
+                "schema" : {
+                  "type" : "string",
+                  "format" : "binary"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request Parameter"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/hasilkelulusan" : {
+      "get" : {
+        "tags" : [ "user" ],
+        "summary" : "Menampikan data hasil kelulusan secara keseluruhan",
+        "description" : "Menampikan data hasil kelulusan pada semua fakultas ITB keseluruhan dengan semua tipe pendaftaran",
+        "operationId" : "showAllHasil",
+        "responses" : {
+          "200" : {
+            "description" : "Successfull, kalau tipe pendaftaran 1= SNMPTN, 2 = SBMPTN, 3 = mandiri 4 = S2 , 5 = S3",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Hasil"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request Parameter"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/hasilkelulusan/fakultas/{fakultas}" : {
+      "get" : {
+        "tags" : [ "user" ],
+        "summary" : "Menampikan data hasil kelulusan mahasiswa berdasarkan fakultas",
+        "description" : "Menampikan data hasl berdasarkan fakultas",
+        "operationId" : "showHasilFakultas",
+        "parameters" : [ {
+          "name" : "fakultas",
+          "in" : "path",
+          "description" : "fakultas yang ingin dilihat hasilnya",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfull",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Hasil"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request Parameter"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/hasilkelulusan/nama/{name}" : {
+      "get" : {
+        "tags" : [ "user" ],
+        "summary" : "Menampilkan data hasil kelulusan mahasiswa berdasarkan nama",
+        "description" : "Menampikan data hasil berdasarkan nama",
+        "operationId" : "showHasilNama",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "path",
+          "description" : "nama yang ingin dilihat hasilnya",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfull",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Hasil"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request Parameter"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/hasilkelulusan/tipe/{tipe}" : {
+      "get" : {
+        "tags" : [ "user" ],
+        "summary" : "Menampikan data hasil kelulusan mahasiswa berdasarkan tipe pendaftaran",
+        "description" : "Menampikan data hasl berdasarkan tipe pendaftaran",
+        "operationId" : "showHasilTipe",
+        "parameters" : [ {
+          "name" : "tipe",
+          "in" : "path",
+          "description" : "tipe pendaftaran yang ingin dilihat hasilnya",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfull",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Hasil"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request Parameter"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/hasilkelulusan/id/{id_pendaftaran}" : {
+      "get" : {
+        "tags" : [ "user" ],
+        "summary" : "Menampikan data nilai mahasiswa ID pendaftaran berdasarkan id pendaftaran",
+        "description" : "Menampikan data hasi nilai tes pendaftaran berdasarkan id pendaftaran",
+        "operationId" : "showNilaiIdPendaftaran",
+        "parameters" : [ {
+          "name" : "id_pendaftaran",
+          "in" : "path",
+          "description" : "id pendaftaran yang ingin dilihat hasilnya",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfull, kalau tipe pendaftaran 1= SNMPTN, 2 = SBMPTN, 3 = mandiri 4 = S2 , 5 = S3",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Hasil"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request Parameter"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/hasilkelulusan/{id_pendaftaran}" : {
+      "put" : {
+        "tags" : [ "admin" ],
+        "summary" : "Update data hasil kelulusan berdasarkan id pendaftaran ke database",
+        "description" : "Mengupdate data hasil kelulusan berdasarkan id pendaftaran dari input ke database",
+        "operationId" : "updatehasilkelulusan",
+        "parameters" : [ {
+          "name" : "id_pendaftaran",
+          "in" : "path",
+          "description" : "id pendaftaran yang akan diupdate hasil kelulusannya ke database",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Hasil"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successfull Post"
+          },
+          "400" : {
+            "description" : "Bad Request Post"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "admin" ],
+        "summary" : "Memasukan data hasil kelulusan berdasar ID pendftaran ke database",
+        "description" : "Memasukan data hasil kelulusan berdasar ID pendaftaran ke dalam database tabel Hasil",
+        "operationId" : "addHasil",
+        "parameters" : [ {
+          "name" : "id_pendaftaran",
+          "in" : "path",
+          "description" : "Id pendaftaran yang akan dimasukan datanya",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Hasil"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successfull"
+          },
+          "400" : {
+            "description" : "Bad Request Parameter"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/nilai/{tipe}" : {
+      "get" : {
+        "tags" : [ "admin" ],
+        "summary" : "Menampikan data nilai mahasiswa ID pendaftaran secara keseluruhan berdasarkan tipe",
+        "description" : "Menampikan data hasi nilai tes pendaftaran secara keseluruhan berdasarkan tipe pendaftaran",
+        "operationId" : "showNilaiTipe",
+        "parameters" : [ {
+          "name" : "tipe",
+          "in" : "path",
+          "description" : "tipe pendaftaran yang ingin dilihat hasilnya",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfull",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Nilai"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request Parameter"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "admin" ],
+        "summary" : "Memasukan data nilai berdasar tipe pendftaran ke database",
+        "description" : "Memasukan data nilai berdasarkan tipe pendaftaran ke dalam database tabel Hasil",
+        "operationId" : "addNilaiTipe",
+        "parameters" : [ {
+          "name" : "tipe",
+          "in" : "path",
+          "description" : "tipe pendaftaran yang akan dimasukan datanya",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Nilai"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successfull"
+          },
+          "400" : {
+            "description" : "Bad Request Parameter"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/nilai/{tipe}/{id_pendaftaran}" : {
+      "get" : {
+        "tags" : [ "admin" ],
+        "summary" : "Menampikan data nilai mahasiswa ID pendaftaran secara keseluruhan berdasarkan tipe dan id pendaftaran",
+        "description" : "Menampikan data hasi nilai tes pendaftaran secara keseluruhan berdasarkan tipe pendaftaran dan id pendaftarans",
+        "operationId" : "showNilaiTipeId",
+        "parameters" : [ {
+          "name" : "id_pendaftaran",
+          "in" : "path",
+          "description" : "id_ pendaftaran yang ingin dilihat hasilnya",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "tipe",
+          "in" : "path",
+          "description" : "tipe pendaftaran yang ingin dilihat hasilnya",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfull",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Nilai"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request Parameter"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/penilaianKelulusan/{tipe}" : {
+      "get" : {
+        "tags" : [ "admin" ],
+        "summary" : "Menampikan proses penilaian kelulusan berhasil atau tidak berdasarkan tipe pendafaran",
+        "description" : "Menampikan proses penilaian kelulusan berhasil atau tidak berdasarkan tipe pendaftaran",
+        "operationId" : "showNilaiTipePendaftaran",
+        "parameters" : [ {
+          "name" : "tipe",
+          "in" : "path",
+          "description" : "tipe pendaftaran yang ingin dinilai",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfull, semua berhasil dinilai",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Penilaian"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request Parameter"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/parameter/tipe/{tipe}" : {
+      "get" : {
+        "tags" : [ "admin" ],
+        "summary" : "Menampikan parameter berdasarkan tipe pendaftaran",
+        "description" : "Menampikan parameter berdasarkan tipe pendaftaran",
+        "operationId" : "showParameterTipe",
+        "parameters" : [ {
+          "name" : "tipe",
+          "in" : "path",
+          "description" : "tipe pendaftaran yang ingin dilihat parameternya",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfull",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Parameter"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request Parameter"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/parameter/fakultas/{fakultas}" : {
+      "get" : {
+        "tags" : [ "admin" ],
+        "summary" : "Menampikan parameter berdasarkan fakultas saat pendaftaran",
+        "description" : "Menampikan parameter berdasarkan fakultas saat pendaftaran",
+        "operationId" : "showParameterFakultas",
+        "parameters" : [ {
+          "name" : "fakultas",
+          "in" : "path",
+          "description" : "fakultas yang ingin dilihat parameternya",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfull",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Parameter"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request Parameter"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/parameter/{tipe}" : {
+      "post" : {
+        "tags" : [ "admin" ],
+        "summary" : "Memasukan data parameter berdasarkan tipe pendftaran ke database",
+        "description" : "Memasukan data parameter berdasarkan tipe pendaftaran ke dalam database",
+        "operationId" : "addParameterTipe",
+        "parameters" : [ {
+          "name" : "tipe",
+          "in" : "path",
+          "description" : "tipe pendaftaran yang akan diupdate parameternya ke database",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Parameter"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successfull"
+          },
+          "400" : {
+            "description" : "Bad Request Parameter"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/parameter/{tipe}/{fakultas}" : {
+      "put" : {
+        "tags" : [ "admin" ],
+        "summary" : "Update data parameter berdasarkn data dan fakultas ke database",
+        "description" : "Update data parameter berdasarkn data dan fakultas ke database",
+        "operationId" : "updateParameterTipeFakultas",
+        "parameters" : [ {
+          "name" : "tipe",
+          "in" : "path",
+          "description" : "tipe pendaftaran yang akan diupdate parameternya ke database",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "fakultas",
+          "in" : "path",
+          "description" : "fakultas pendaftaran yang akan diupdate parameternya ke database",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Parameter"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successfull"
+          },
+          "400" : {
+            "description" : "Bad Request Parameter"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/parameter/{fakultas}/{tipe}" : {
+      "get" : {
+        "tags" : [ "admin" ],
+        "summary" : "Menampilkan data parameter berdasarkn fakultas serta tipenya ke database",
+        "description" : "Menampilkan data parameter berdasarkan fakultas serta tipenya ke database",
+        "operationId" : "ShowParameterTipeFakultas",
+        "parameters" : [ {
+          "name" : "tipe",
+          "in" : "path",
+          "description" : "tipe pendaftaran yang akan diupdate parameternya ke database",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        }, {
+          "name" : "fakultas",
+          "in" : "path",
+          "description" : "fakultas pendaftaran yang akan diupdate parameternya ke database",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfull"
+          },
+          "400" : {
+            "description" : "Bad Request Parameter"
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Hasil" : {
+        "type" : "object",
+        "properties" : {
+          "id_pendaftaran" : {
+            "type" : "integer",
+            "example" : 1
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Nadya Anastasia"
+          },
+          "fakultas" : {
+            "type" : "string",
+            "example" : "STEI"
+          },
+          "tipependaftaran" : {
+            "type" : "integer",
+            "example" : 1
+          }
+        }
+      },
+      "Parameter" : {
+        "type" : "object",
+        "properties" : {
+          "tipependaftaran" : {
+            "type" : "integer",
+            "example" : 1
+          },
+          "fakultas" : {
+            "type" : "string",
+            "example" : "STEI"
+          },
+          "tps" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "tkamatematika" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "tkafisika" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "tkakimia" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "tkabiologi" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "tkageografi" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "tka.sosiologi" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "tkasejarah" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "tkaekonomi" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "indekssekolah" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "raportmat" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "raportfisika" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "raportbiologi" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "raportkimia" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "raportgeografi" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "raportsosiologi" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "raportsejarah" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "raportekonomi" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "indeksuniversitas" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "ipk" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "toefl_ibt" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "toefl_cbt" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "toefl_itp" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "ielts" : {
+            "type" : "integer",
+            "example" : 30
+          },
+          "tpabappenas" : {
+            "type" : "integer",
+            "example" : 20
+          },
+          "passinggrade" : {
+            "type" : "integer",
+            "example" : 80
+          }
+        }
+      },
+      "Penilaian" : {
+        "type" : "object",
+        "properties" : {
+          "response code" : {
+            "type" : "integer",
+            "example" : 200
+          },
+          "message" : {
+            "type" : "string",
+            "example" : "Semua telah berhasil dinilai"
+          }
+        }
+      },
+      "Nilai" : {
+        "type" : "object",
+        "properties" : {
+          "id_pendaftaran" : {
+            "type" : "integer",
+            "example" : 1
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Nadya Anastasia"
+          },
+          "tipependaftaran" : {
+            "type" : "integer",
+            "example" : 1
+          },
+          "fakultas1" : {
+            "type" : "string",
+            "example" : "STEI"
+          },
+          "fakultas2" : {
+            "type" : "string",
+            "example" : "FSRD"
+          },
+          "param1" : {
+            "type" : "integer",
+            "example" : 98
+          },
+          "param2" : {
+            "type" : "integer",
+            "example" : 98
+          },
+          "param3" : {
+            "type" : "integer",
+            "example" : 98
+          },
+          "param4" : {
+            "type" : "integer",
+            "example" : 98
+          },
+          "param5" : {
+            "type" : "integer",
+            "example" : 98
+          },
+          "param6" : {
+            "type" : "integer",
+            "example" : 98
+          },
+          "param7" : {
+            "type" : "integer",
+            "example" : 98
+          },
+          "param8" : {
+            "type" : "integer",
+            "example" : 98
+          },
+          "param9" : {
+            "type" : "integer",
+            "example" : 98
+          }
+        }
+      }
+    }
+  }
+}
